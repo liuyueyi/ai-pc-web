@@ -58,7 +58,33 @@ export const apps = [
             name: '一灰灰',
             handle: '@almahealth',
             avatar: 'https://hhui.top/tutorial/logo.svg?height=40&width=40'
-        }
+        },
+        logo: '/chess/logo.png',
+        previewImages: [
+            '/chess/preview0.jpg',
+            '/chess/preview1.jpg',
+            '/chess/preview2.jpg',
+            '/chess/preview3.jpg',
+            '/chess/preview4.jpg',
+        ],
+        googlePlayUrl: '',
+        androidUrl: '',
+        // 小程序二维码
+        qrCode: '',
+        // h5 预览页面
+        // previewUrl: 'http://cdn.hhui.top/app/offline-chess/index.html#/',
+        features: [
+            'AI离线对战棋类游戏。',
+            '- 五子棋对战。',
+            '- 黑白棋对战。',
+            '- 九子棋对战。',
+        ],
+        testimonials: [
+            // {
+            //     text: 'RobotFriend has opened up a whole new revenue stream for my digital art. The platform is intuitive and the community is amazing!',
+            //     author: 'Alex M., Digital Artist'
+            // },
+        ]
     },
     {
         id: 999,

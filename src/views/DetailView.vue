@@ -87,7 +87,14 @@
                 </div>
 
                 <div class="preview-container" v-if="app.previewUrl">
-                    <h3 class="preview-title"><a :href="app.previewUrl" target="_blank">WAP预览</a></h3>
+                    <h3 class="preview-title">
+                        <a :href="app.previewUrl" target="_blank" class="preview-link">
+                            WAP预览
+                            <div class="qr-hover" v-if="app.qrCode">
+                                <img :src="app.qrCode" alt="QR Code" class="qr-hover-image" />
+                            </div>
+                        </a>
+                    </h3>
                     <div class="preview-frame">
                         <iframe :src="app.previewUrl" frameborder="0" class="preview-iframe"></iframe>
                     </div>
@@ -625,5 +632,28 @@ onMounted(() => {
     width: 100%;
     flex-shrink: 0;
     object-fit: cover;
+}
+
+.qr-hover {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 10;
+}
+
+.preview-link:hover .qr-hover {
+    display: block;
+}
+
+.qr-hover-image {
+    width: 150px;
+    height: 150px;
+    display: block;
 }
 </style>
