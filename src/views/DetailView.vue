@@ -37,11 +37,11 @@
 
                         <div class="app-actions">
                             <a :href="app.googlePlayUrl" class="download-btn" target="_blank" rel="noopener noreferrer">
-                                <img src="/static/google-play.png" alt="应用市场" class="google-play-badge" />
+                                <img :src="`/static/google-play.png`" alt="应用市场" class="google-play-badge" />
                             </a>
 
                             <a :href="app.androidUrl" class="download-btn" target="_blank" rel="noopener noreferrer">
-                                <img src="/static/android-apk.png" alt="下载APK" class="google-play-badge" />
+                                <img :src="`/static/android-apk.png`" alt="下载APK" class="google-play-badge" />
                             </a>
 
                             <div class="qr-code" v-if="app.qrCode">
@@ -106,9 +106,9 @@
             <div class="media-container">
                 <h2 class="media-title">Featured In</h2>
                 <div class="media-logos">
-                    <img src="/placeholder.svg?height=50&width=150" alt="TechCrunch" class="media-logo" />
-                    <img src="/placeholder.svg?height=50&width=150" alt="Business Insider" class="media-logo" />
-                    <img src="/placeholder.svg?height=50&width=150" alt="Fitt Insider" class="media-logo" />
+                    <img :src="`/placeholder.svg?height=50&width=150`" alt="TechCrunch" class="media-logo" />
+                    <img :src="`/placeholder.svg?height=50&width=150`" alt="Business Insider" class="media-logo" />
+                    <img :src="`/placeholder.svg?height=50&width=150`" `lt="Fitt Insider" class="media-logo" />
                 </div>
             </div>
         </section>

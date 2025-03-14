@@ -3,7 +3,7 @@ export const apps = [
         id: 1,
         name: 'ColorPicker',
         description: 'ColorPick（拾色） - 用于识别相机或图像中的颜色的应用程序。',
-        image: '/pickcolor/logo.png', // 首页宣传稿图
+        image: '/static/pickcolor/logo.png', // 首页宣传稿图
         price: 'Free',
         showInfo: false,
         // auction: {
@@ -16,14 +16,14 @@ export const apps = [
             handle: '@almahealth',
             avatar: 'https://hhui.top/tutorial/logo.svg'
         },
-        logo: '/pickcolor/logo.png',
+        logo: '/static/pickcolor/logo.png',
         previewImages: [
-            '/pickcolor/preview0.jpg',
-            '/pickcolor/preview1.jpg',
-            '/pickcolor/preview2.jpg',
-            '/pickcolor/preview3.jpg',
-            '/pickcolor/preview4.jpg',
-            '/pickcolor/preview5.jpg'
+            '/static/pickcolor/preview0.jpg',
+            '/static/pickcolor/preview1.jpg',
+            '/static/pickcolor/preview2.jpg',
+            '/static/pickcolor/preview3.jpg',
+            '/static/pickcolor/preview4.jpg',
+            '/static/pickcolor/preview5.jpg'
         ],
         googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.git.hui.colorpicker',
         androidUrl: 'http://cdn.hhui.top/app/colorpicker/ColorPicker-1.0.1.apk',
@@ -51,7 +51,7 @@ export const apps = [
         id: 2,
         name: 'Offline Chess',
         description: '离线的AI棋盘对战游戏',
-        image: '/chess/logo.png',
+        image: '/static/chess/logo.png',
         price: 'Free',
         showInfo: false,
         creator: {
@@ -59,13 +59,13 @@ export const apps = [
             handle: '@almahealth',
             avatar: 'https://hhui.top/tutorial/logo.svg?height=40&width=40'
         },
-        logo: '/chess/logo.png',
+        logo: '/static/chess/logo.png',
         previewImages: [
-            '/chess/preview0.jpg',
-            '/chess/preview1.jpg',
-            '/chess/preview2.jpg',
-            '/chess/preview3.jpg',
-            '/chess/preview4.jpg',
+            '/static/chess/preview0.jpg',
+            '/static/chess/preview1.jpg',
+            '/static/chess/preview2.jpg',
+            '/static/chess/preview3.jpg',
+            '/static/chess/preview4.jpg',
         ],
         googlePlayUrl: '',
         androidUrl: '',

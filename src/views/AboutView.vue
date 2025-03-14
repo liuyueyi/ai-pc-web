@@ -22,7 +22,7 @@
           </p>
         </div>
         <div class="mission-image">
-          <img src="/static/about-cover.jpg" alt="Our Mission" class="image" />
+          <img :src="'/static/about-cover.jpg'" alt="Our Mission" class="image" />
         </div>
       </div>
     </section>
@@ -54,7 +54,7 @@
           </div>
           <div class="team-member">
             <div class="">
-              <img src="/placeholder.svg?height=200&width=200" class="avatar-image" />
+              <img :src="`/placeholder.svg?height=200&width=200`" class="avatar-image" />
             </div>
             <h3 class="member-name">广告位招商</h3>
             <p class="member-role">QQ: 3302797840</p>
@@ -65,7 +65,7 @@
 
           <!-- <div class="team-member">
               <div class="member-avatar">
-                <img src="/placeholder.svg?height=200&width=200" alt="Team Member" class="avatar-image" />
+                <img :src="`/placeholder.svg?height=200&width=200" alt="Team Member" class="avatar-image" />
               </div>
               <h3 class="member-name">John Smith</h3>
               <p class="member-role">CTO</p>
@@ -76,7 +76,7 @@
             
             <div class="team-member">
               <div class="member-avatar">
-                <img src="/placeholder.svg?height=200&width=200" alt="Team Member" class="avatar-image" />
+                <img :src="`/placeholder.svg?height=200&width=200`" alt="Team Member" class="avatar-image" />
               </div>
               <h3 class="member-name">Emily Chen</h3>
               <p class="member-role">Head of Partnerships</p>
@@ -87,7 +87,7 @@
             
             <div class="team-member">
               <div class="member-avatar">
-                <img src="/placeholder.svg?height=200&width=200" alt="Team Member" class="avatar-image" />
+                <img :src="`/placeholder.svg?height=200&width=200`" alt="Team Member" class="avatar-image" />
               </div>
               <h3 class="member-name">Michael Johnson</h3>
               <p class="member-role">UX Designer</p>

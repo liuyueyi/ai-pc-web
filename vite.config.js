@@ -6,6 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: process.env.VITE_BASE_URL || '/ai-pc-web', // 使用环境变量
   plugins: [
     vue(),
     vueDevTools(),
