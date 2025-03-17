@@ -21,7 +21,7 @@
     <section class="app-showcase">
       <div class="carousel-container">
         <div class="carousel" ref="carousel">
-          <div v-for="(app, index) in apps" :key="index" class="app-card" @mouseenter="showInfo(index)"
+          <div v-for="(app, index) in [...apps, ...clonedCards]" :key="index" class="app-card" @mouseenter="showInfo(index)"
             @mouseleave="hideInfo(index)" @click="goToDetail(app.id)">
             <img :src="app.logo && app.logo.startsWith('http') ? app.logo : baseUrl + app.logo" :alt="app.name" class="app-image" />
             <div class="app-name" v-show="!app.showInfo">{{ app.name }}</div>
@@ -82,45 +82,68 @@ const baseUrl = import.meta.env.BASE_URL;
 const router = useRouter();
 const carousel = ref(null);
 let carouselInterval = null;
+let isResetting = false;
 
 const apps = ref(appList);
-
+const clonedCards = ref([]);
 
 const showInfo = (index) => {
-  apps.value[index].showInfo = true;
+  const actualIndex = index >= apps.value.length ? index - apps.value.length : index;
+  apps.value[actualIndex].showInfo = true;
 };
 
 const hideInfo = (index) => {
-  apps.value[index].showInfo = false;
+  const actualIndex = index >= apps.value.length ? index - apps.value.length : index;
+  apps.value[actualIndex].showInfo = false;
 };
 
-const goToDetail = (id) => {
-  router.push(`/detail/${id}`);
+const cloneFirstCards = () => {
+  if (carousel.value) {
+    const cardWidth = 300 + 16; // card width + gap
+    const visibleCards = Math.ceil(carousel.value.clientWidth / cardWidth);
+    clonedCards.value = apps.value.slice(0, visibleCards);
+  }
+};
+
+const resetScroll = () => {
+  if (carousel.value && !isResetting) {
+    isResetting = true;
+    carousel.value.style.scrollBehavior = 'auto';
+    carousel.value.scrollLeft = 0;
+    setTimeout(() => {
+      carousel.value.style.scrollBehavior = 'smooth';
+      isResetting = false;
+    }, 0);
+  }
 };
 
 const startCarousel = () => {
   carouselInterval = setInterval(() => {
-    if (carousel.value) {
+    if (carousel.value && !isResetting) {
       carousel.value.scrollLeft += 1;
-
-      // Reset when reaching the end
       const maxScroll = carousel.value.scrollWidth - carousel.value.clientWidth;
-      if (carousel.value.scrollLeft >= maxScroll) {
-        carousel.value.scrollLeft = 0;
+      if (carousel.value.scrollLeft >= maxScroll - 5) {
+        resetScroll();
       }
     }
   }, 30);
 };
 
 onMounted(() => {
+  cloneFirstCards();
   startCarousel();
+  window.addEventListener('resize', cloneFirstCards);
 });
 
 onUnmounted(() => {
   if (carouselInterval) {
     clearInterval(carouselInterval);
   }
+  window.removeEventListener('resize', cloneFirstCards);
 });
+const goToDetail = (id) => {
+  router.push(`/detail/${id}`);
+};
 </script>
 
 <style scoped>
