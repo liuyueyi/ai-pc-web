@@ -106,9 +106,9 @@
             <div class="media-container">
                 <h2 class="media-title">Featured In</h2>
                 <div class="media-logos">
-                    <img :src="baseUrl + '/placeholder.svg?height=50&width=150'" alt="TechCrunch" class="media-logo" />
-                    <img :src="baseUrl + '/placeholder.svg?height=50&width=150'" alt="Business Insider" class="media-logo" />
-                    <img :src="baseUrl + '/placeholder.svg?height=50&width=150'" alt="Fitt Insider" class="media-logo" />
+                    <img src="/static/placeholder.svg?height=50&width=150" alt="TechCrunch" class="media-logo" />
+                    <img src="/static/placeholder.svg?height=50&width=150" alt="Business Insider" class="media-logo" />
+                    <img src="/static/placeholder.svg?height=50&width=150" alt="Fitt Insider" class="media-logo" />
                 </div>
             </div>
         </section>

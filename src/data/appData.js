@@ -90,7 +90,7 @@ export const apps = [
         id: 999,
         name: 'more',
         description: '更多AI生成app正在加载中...',
-        image: '/placeholder.svg?height=400&width=300',
+        image: '/static/placeholder.svg?height=400&width=300',
         price: 'Free',
         showInfo: false,
         creator: {

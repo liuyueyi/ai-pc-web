@@ -54,7 +54,7 @@
           </div>
           <div class="team-member">
             <div class="">
-              <img :src="`${baseUrl}/placeholder.svg?height=200&width=200`" class="avatar-image" />
+              <img src="/static/placeholder.svg?height=200&width=200" class="avatar-image" />
             </div>
             <h3 class="member-name">广告位招商</h3>
             <p class="member-role">QQ: 3302797840</p>

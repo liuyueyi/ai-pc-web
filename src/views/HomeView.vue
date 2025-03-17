@@ -3,7 +3,8 @@
     <section class="hero">
       <div class="hero-content">
         <div class="tagline"> 开发 ・ 收集 ・ 分享 </div>
-        <h1 class="title">人人都是程序员<br/><span>用AI实现生成APP，让你的想法不再悬空</span></h1>
+        <h1 class="title">人人都是程序员<br/></h1>
+        <h2>用AI实现你的想法，让你的创业不再缺“程序员”</h2>
         <!-- <div class="tagline">Discover. Collect. Experience.</div>
         <h1 class="title">Develop Amazing Applications By AI</h1> -->
 
@@ -12,7 +13,7 @@
           <span class="user-rating">Satisfied users</span>
         </div>
         <p class="description">
-          Explore exclusive mobile applications and support the developers you love.
+          上传、推荐一些有趣的移动应用，让更多的人看到你的作品。
         </p>
       </div>
     </section>
@@ -156,6 +157,7 @@ onUnmounted(() => {
 }
 
 .rating {
+  padding-top: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -174,7 +176,8 @@ onUnmounted(() => {
 }
 
 .description {
-  font-size: 1.1rem;
+  font-size: 0.8rem;
+  font-style: italic;
   color: #666;
   max-width: 600px;
   margin: 0 auto;
