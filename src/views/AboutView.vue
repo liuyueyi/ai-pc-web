@@ -22,7 +22,7 @@
           </p>
         </div>
         <div class="mission-image">
-          <img :src="'/static/about-cover.jpg'" alt="Our Mission" class="image" />
+          <img :src="`${baseUrl}/static/about-cover.jpg`" alt="Our Mission" class="image" />
         </div>
       </div>
     </section>
@@ -54,7 +54,7 @@
           </div>
           <div class="team-member">
             <div class="">
-              <img :src="`/placeholder.svg?height=200&width=200`" class="avatar-image" />
+              <img :src="`${baseUrl}/placeholder.svg?height=200&width=200`" class="avatar-image" />
             </div>
             <h3 class="member-name">广告位招商</h3>
             <p class="member-role">QQ: 3302797840</p>
@@ -181,6 +181,8 @@
 
 <script setup>
 import { ref, reactive } from 'vue';
+// 定义基础URL变量
+const baseUrl = import.meta.env.BASE_URL;
 
 const formData = reactive({
   name: '',

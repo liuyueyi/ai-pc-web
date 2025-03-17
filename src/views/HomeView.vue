@@ -3,7 +3,7 @@
     <section class="hero">
       <div class="hero-content">
         <div class="tagline"> 开发 ・ 收集 ・ 分享 </div>
-        <h1 class="title">人人都是程序员<br/><h2>用AI实现生成APP，让你的想法不再悬空</h2></h1>
+        <h1 class="title">人人都是程序员<br/><span>用AI实现生成APP，让你的想法不再悬空</span></h1>
         <!-- <div class="tagline">Discover. Collect. Experience.</div>
         <h1 class="title">Develop Amazing Applications By AI</h1> -->
 
@@ -22,7 +22,7 @@
         <div class="carousel" ref="carousel">
           <div v-for="(app, index) in apps" :key="index" class="app-card" @mouseenter="showInfo(index)"
             @mouseleave="hideInfo(index)" @click="goToDetail(app.id)">
-            <img :src="app.image" :alt="app.name" class="app-image" />
+            <img :src="app.image && app.image.startsWith('http') ? app.image : baseUrl + app.image" :alt="app.name" class="app-image" />
             <div class="app-name" v-show="!app.showInfo">{{ app.name }}</div>
             <div class="app-info" :class="{ 'show': app.showInfo }">
               <div class="app-price">{{ app.price }}</div>
@@ -47,7 +47,7 @@
                 </div>
               </div>
               <div class="app-creator">
-                <img :src="app.creator.avatar" alt="Creator" class="creator-avatar" />
+                <img :src="app.creator.avatar && app.creator.avatar.startsWith('http') ? app.creator.avatar : baseUrl + app.creator.avatar" alt="Creator" class="creator-avatar" />
                 <div class="creator-info">
                   <div class="creator-name">{{ app.creator.name }}</div>
                   <div class="creator-handle">{{ app.creator.handle }}</div>
@@ -75,6 +75,8 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { apps as appList } from '../data/appData';
+// 定义基础URL变量
+const baseUrl = import.meta.env.BASE_URL;
 
 const router = useRouter();
 const carousel = ref(null);

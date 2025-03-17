@@ -9,7 +9,7 @@
                             <div class="carousel">
                                 <div class="carousel-inner"
                                     :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-                                    <img v-for="(image, index) in app.previewImages" :key="index" :src="image"
+                                    <img v-for="(image, index) in app.previewImages" :key="index" :src="image && image.startsWith('http') ? image : baseUrl + image"
                                         :alt="`App Preview ${index + 1}`" class="preview-image" />
                                 </div>
                                 <button class="carousel-btn prev" @click="prevSlide"
@@ -27,7 +27,7 @@
                     <div class="hero-right">
                         <div class="app-header">
                             <div class="app-logo">
-                                <img :src="app.logo" alt="App Logo" class="logo-image" />
+                                <img :src="app.logo && app.logo.startsWith('http') ? app.logo : baseUrl + app.logo" alt="App Logo" class="logo-image" />
                             </div>
                             <div class="app-tag">
                                 <h1 class="app-name">{{ app.name }}</h1>
@@ -37,11 +37,11 @@
 
                         <div class="app-actions">
                             <a :href="app.googlePlayUrl" class="download-btn" target="_blank" rel="noopener noreferrer">
-                                <img :src="`/static/google-play.png`" alt="应用市场" class="google-play-badge" />
+                                <img src="/static/google-play.png" alt="应用市场" class="google-play-badge" />
                             </a>
 
                             <a :href="app.androidUrl" class="download-btn" target="_blank" rel="noopener noreferrer">
-                                <img :src="`/static/android-apk.png`" alt="下载APK" class="google-play-badge" />
+                                <img src="/static/android-apk.png" alt="下载APK" class="google-play-badge" />
                             </a>
 
                             <div class="qr-code" v-if="app.qrCode">
@@ -91,7 +91,7 @@
                         <a :href="app.previewUrl" target="_blank" class="preview-link">
                             WAP预览
                             <div class="qr-hover" v-if="app.qrCode">
-                                <img :src="app.qrCode" alt="QR Code" class="qr-hover-image" />
+                                <img :src="baseUrl + app.qrCode" alt="QR Code" class="qr-hover-image" />
                             </div>
                         </a>
                     </h3>
@@ -106,9 +106,9 @@
             <div class="media-container">
                 <h2 class="media-title">Featured In</h2>
                 <div class="media-logos">
-                    <img :src="`/placeholder.svg?height=50&width=150`" alt="TechCrunch" class="media-logo" />
-                    <img :src="`/placeholder.svg?height=50&width=150`" alt="Business Insider" class="media-logo" />
-                    <img :src="`/placeholder.svg?height=50&width=150`" `lt="Fitt Insider" class="media-logo" />
+                    <img :src="baseUrl + '/placeholder.svg?height=50&width=150'" alt="TechCrunch" class="media-logo" />
+                    <img :src="baseUrl + '/placeholder.svg?height=50&width=150'" alt="Business Insider" class="media-logo" />
+                    <img :src="baseUrl + '/placeholder.svg?height=50&width=150'" alt="Fitt Insider" class="media-logo" />
                 </div>
             </div>
         </section>
@@ -119,6 +119,8 @@
 import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { apps as appList } from '../data/appData';
+// 定义基础URL变量
+const baseUrl = import.meta.env.BASE_URL;
 
 const route = useRoute();
 const appHero = ref(null);
@@ -244,8 +246,8 @@ onMounted(() => {
 }
 
 .app-logo {
-    width: 80px;
-    height: 80px;
+    width: 180px;
+    height: 180px;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -269,7 +271,7 @@ onMounted(() => {
 }
 
 .app-tagline {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #666;
     margin-bottom: 2rem;
 }
