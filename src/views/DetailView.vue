@@ -1,7 +1,7 @@
 <template>
     <div class="detail-view">
         <!-- First Screen -->
-        <section class="app-hero" ref="appHero">
+        <section class="app-hero" ref="appHero" :style="{backgroundImage:  baseUrl + app.cover}">
             <div class="app-hero-content">
                 <div class="hero-layout">
                     <div class="hero-left">
@@ -9,7 +9,8 @@
                             <div class="carousel">
                                 <div class="carousel-inner"
                                     :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-                                    <img v-for="(image, index) in app.previewImages" :key="index" :src="image && image.startsWith('http') ? image : baseUrl + image"
+                                    <img v-for="(image, index) in app.previewImages" :key="index"
+                                        :src="image && image.startsWith('http') ? image : baseUrl + image"
                                         :alt="`App Preview ${index + 1}`" class="preview-image" />
                                 </div>
                                 <button class="carousel-btn prev" @click="prevSlide"
@@ -27,7 +28,8 @@
                     <div class="hero-right">
                         <div class="app-header">
                             <div class="app-logo">
-                                <img :src="app.logo && app.logo.startsWith('http') ? app.logo : baseUrl + app.logo" alt="App Logo" class="logo-image" />
+                                <img :src="app.logo && app.logo.startsWith('http') ? app.logo : baseUrl + app.logo"
+                                    alt="App Logo" class="logo-image" />
                             </div>
                             <div class="app-tag">
                                 <h1 class="app-name">{{ app.name }}</h1>
@@ -36,11 +38,11 @@
                         </div>
 
                         <div class="app-actions">
-                            <a :href="app.googlePlayUrl" class="download-btn" target="_blank" rel="noopener noreferrer">
+                            <a :href="app.googlePlayUrl" class="download-btn" target="_blank" rel="noopener noreferrer" v-if="app.googlePlayUrl">
                                 <img src="/static/google-play.png" alt="应用市场" class="google-play-badge" />
                             </a>
 
-                            <a :href="app.androidUrl" class="download-btn" target="_blank" rel="noopener noreferrer">
+                            <a :href="app.androidUrl" class="download-btn" target="_blank" rel="noopener noreferrer" v-if="app.androidUrl">
                                 <img src="/static/android-apk.png" alt="下载APK" class="google-play-badge" />
                             </a>
 
@@ -74,8 +76,8 @@
                         </ul>
                     </div>
 
-                    <div class="app-testimonials" v-if="app.testimonials && app.testimonials.length">
-                        <h3 class="testimonials-title">What Users Say</h3>
+                    <div class="app-testimonials" v-if="app.testimonials && app.testimonials.length && app.previewUrl">
+                        <h3 class="testimonials-title">用户评价</h3>
                         <div class="testimonials-list">
                             <div v-for="(testimonial, index) in app.testimonials" :key="index" class="testimonial-item">
                                 <div class="testimonial-rating">★★★★★</div>
@@ -97,6 +99,16 @@
                     </h3>
                     <div class="preview-frame">
                         <iframe :src="app.previewUrl" frameborder="0" class="preview-iframe"></iframe>
+                    </div>
+                </div>
+                <div class="app-testimonials" v-if="app.testimonials && app.testimonials.length && !app.previewUrl">
+                    <h3 class="testimonials-title">用户评价</h3>
+                    <div class="testimonials-list">
+                        <div v-for="(testimonial, index) in app.testimonials" :key="index" class="testimonial-item">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <p class="testimonial-text">"{{ testimonial.text }}"</p>
+                            <div class="testimonial-author">- {{ testimonial.author }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -226,6 +238,9 @@ onMounted(() => {
     background-color: #f9f9f9;
     overflow: hidden;
     transition: opacity 0.3s, transform 0.3s;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .app-hero-content {
@@ -492,6 +507,7 @@ onMounted(() => {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+
 .preview-frame {
     width: 100%;
     height: 90%;

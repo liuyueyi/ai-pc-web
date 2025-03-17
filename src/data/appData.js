@@ -87,16 +87,104 @@ export const apps = [
         ]
     },
     {
+        id: 3,
+        name: '享阅小说 - 精简版',
+        description: '看书阅读器-全网小说免费看',
+        image: '/static/enjoyreader/cover.png',
+        price: 'Free',
+        showInfo: false,
+        creator: {
+            name: '一灰灰',
+            handle: '@almahealth',
+            avatar: 'https://hhui.top/tutorial/logo.svg?height=40&width=40'
+        },
+        logo: '/static/enjoyreader/logo.png',
+        previewImages: [
+            '/static/enjoyreader/g0.png',
+            '/static/enjoyreader/g1.png',
+            '/static/enjoyreader/g2.png',
+            '/static/enjoyreader/g3.png',
+            '/static/enjoyreader/g4.png',
+        ],
+        googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.yhh.enjoy.novel.release',
+        androidUrl: 'http://cdn.hhui.top/app/owl/owlreader_google_1.8.25031711.apk',
+        // 小程序二维码
+        qrCode: '',
+        // h5 预览页面
+        // previewUrl: 'http://cdn.hhui.top/app/offline-chess/index.html#/',
+        features: [
+            '网络小说阅读追书神器，囊括各大网络平台的精品小说资源。在这里，随时随地自由听书、看书，轻松拥有移动电子书书城，享受阅读的乐趣。全库支持有声模式，满足懒人听书需求。',
+            '- 女频精选：《蚀骨蜜宠：前妻浑身是宝》《盛宠之将门嫡长女》《追缉妻宝：夫人很不乖》《金牌法医：娇后世无双》《凰归之帝女凤华》《前妻难追：战少请自重！》……萌宝来袭甜宠无极限，爱如繁星唯美言情，穿越时空废柴逆袭，女生爱不释手；',
+            '- 男频红文：《极品医仙》《百炼成神》《绝世剑神》《超品兵王在都市》《都市无敌神医》……龙血战神剑斩八荒，诡域档案尽是人间异事，穿越时空制霸三国，网游世界王者归来；',
+            '涵盖小说APP资源！玄幻奇幻、言情小说、武侠小说、都市小说、穿越架空、有声小说、全本小说、耽美小说、同人小说、爱情小说、科幻灵异、经典图书等各类有声小说大全，超质感阅读体验！',
+        ],
+        testimonials: [
+            {
+                text: '免费小说无限阅读',
+                author: '一灰'
+            },
+        ]
+    },
+    {
+        id: 4,
+        name: '猫头鹰阅读',
+        description: '小说漫画阅读器-全网小说免费看',
+        image: '/static/owlreader/logo.jpg',
+        price: 'Free',
+        showInfo: false,
+        creator: {
+            name: '一灰灰',
+            handle: '@almahealth',
+            avatar: 'https://hhui.top/tutorial/logo.svg?height=40&width=40'
+        },
+        logo: '/static/owlreader/logo.jpg',
+        previewImages: [
+            '/static/owlreader/s1.jpg',
+            '/static/owlreader/s2.jpg',
+            '/static/owlreader/s3.jpg',
+            '/static/owlreader/s4.jpg',
+            '/static/owlreader/s5.jpg',
+            '/static/owlreader/s6.jpg',
+            '/static/owlreader/s7.jpg',
+            '/static/owlreader/s8.jpg',
+            '/static/owlreader/s9.jpg',
+        ],
+        googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.yhh.enjoy.novel.release',
+        androidUrl: 'http://cdn.hhui.top/app/enjoynovel/EnjoyReader_google_1.0.25031711.apk',
+        // 小程序二维码
+        qrCode: '',
+        // h5 预览页面
+        // previewUrl: 'http://cdn.hhui.top/app/offline-chess/index.html#/',
+        features: [
+            '最热最全的免费小说漫画阅读器，全网精品小说漫画，火热新书，追书神器，阅读必备，千万小说漫画爱好者首选阅读器。',
+            '火爆新书热书全场免费畅读，爱生活，爱阅读，快乐追更; 一款小说/漫画搜索、免费阅读APP',
+            '- 【热门分类】：追书免费小说漫画，汇集都市言情、玄幻奇幻、武侠仙侠、青春校园、穿越架空、惊悚悬疑、耽美同人、游戏竞技、科幻灵异、职场励志等海量热门小说漫画内容，连载小说及时更新，书荒从此说再见！',
+            '- 【热门推荐】：高人气推荐栏目，优质书单推荐',
+            '- 【实时更新】：实时跨网站搜索全网热门小说，与作者更新云同步',
+        ],
+        testimonials: [
+            {
+                text: '用过就知道这个有多好',
+                author: '包子'
+            },
+            {
+                text: '不知道为什么评分那么低，但这个APP真的很好用。如果要加广告的话，请记得要把广告放到上面，并且可以调颜色。',
+                'author': '陈长歌'
+            }
+        ]
+    },
+    {
         id: 999,
         name: 'more',
         description: '更多AI生成app正在加载中...',
         image: '/static/placeholder.svg?height=400&width=300',
+        logo: '/static/placeholder.svg?height=400&width=300',
         price: 'Free',
         showInfo: false,
         creator: {
             name: 'hero',
             handle: '@cryptolabs',
-            avatar: '/placeholder.svg?height=40&width=40'
+            avatar: '/static/placeholder.svg?height=40&width=40'
         }
     }
 ];

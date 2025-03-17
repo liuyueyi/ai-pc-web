@@ -23,7 +23,7 @@
         <div class="carousel" ref="carousel">
           <div v-for="(app, index) in apps" :key="index" class="app-card" @mouseenter="showInfo(index)"
             @mouseleave="hideInfo(index)" @click="goToDetail(app.id)">
-            <img :src="app.image && app.image.startsWith('http') ? app.image : baseUrl + app.image" :alt="app.name" class="app-image" />
+            <img :src="app.logo && app.logo.startsWith('http') ? app.logo : baseUrl + app.logo" :alt="app.name" class="app-image" />
             <div class="app-name" v-show="!app.showInfo">{{ app.name }}</div>
             <div class="app-info" :class="{ 'show': app.showInfo }">
               <div class="app-price">{{ app.price }}</div>
