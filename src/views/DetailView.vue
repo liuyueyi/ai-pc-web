@@ -14,9 +14,17 @@
                                         :alt="`App Preview ${index + 1}`" class="preview-image" />
                                 </div>
                                 <button class="carousel-btn prev" @click="prevSlide"
-                                    aria-label="Previous slide">&lt;</button>
+                                    aria-label="Previous slide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="15 18 9 12 15 6"></polyline>
+                                    </svg>
+                                </button>
                                 <button class="carousel-btn next" @click="nextSlide"
-                                    aria-label="Next slide">&gt;</button>
+                                    aria-label="Next slide">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
+                                </button>
                                 <div class="carousel-indicators">
                                     <button v-for="(_, index) in app.previewImages" :key="index"
                                         :class="['indicator-dot', { active: currentSlide === index }]"
@@ -599,26 +607,33 @@ onMounted(() => {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
     border: none;
-    padding: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    font-size: 1.5rem;
     z-index: 2;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .carousel-btn:hover {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-50%) scale(1.05);
 }
 
 .carousel-btn.prev {
-    left: 1rem;
+    left: 10px;
 }
 
 .carousel-btn.next {
-    right: 1rem;
+    right: 10px;
 }
 
 .carousel-indicators {
