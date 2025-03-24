@@ -77,7 +77,8 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { apps as appList } from '../data/appData';
 // 定义基础URL变量
-const baseUrl = import.meta.env.BASE_URL;
+const baseUrl = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL ;
+console.log('前置路径：',baseUrl,'/')
 
 const router = useRouter();
 const carousel = ref(null);

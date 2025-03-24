@@ -140,7 +140,7 @@ import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { apps as appList } from '../data/appData';
 // 定义基础URL变量
-const baseUrl = import.meta.env.BASE_URL;
+const baseUrl = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL ;
 
 const route = useRoute();
 const appHero = ref(null);

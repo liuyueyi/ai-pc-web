@@ -20,9 +20,8 @@ const routes = [
     component: AboutView
   }
 ]
-
 const router = createRouter({
-  history: createWebHistory('/ai-pc-web/'),
+  history: createWebHistory(import.meta.env.VITE_BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

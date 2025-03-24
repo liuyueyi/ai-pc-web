@@ -182,7 +182,7 @@
 <script setup>
 import { ref, reactive } from 'vue';
 // 定义基础URL变量
-const baseUrl = import.meta.env.BASE_URL;
+const baseUrl = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL ;
 
 const formData = reactive({
   name: '',
