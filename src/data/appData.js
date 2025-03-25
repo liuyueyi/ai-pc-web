@@ -42,8 +42,8 @@ export const apps = [
         ],
         testimonials: [
             {
-                text: 'RobotFriend has opened up a whole new revenue stream for my digital art. The platform is intuitive and the community is amazing!',
-                author: 'Alex M., Digital Artist'
+                text: 'Dankeschön für ihre schnelle antwort,jetzt ist die deutsche Sprache dabei(德语翻译: 感谢您的快速答复，现在包含德语)',
+                author: 'Ivica Črnelić'
             },
         ]
     },
