@@ -18,6 +18,40 @@
       </div>
     </section>
 
+    <section class="featured-apps">
+      <div class="container">
+        <h2 class="section-title">推荐应用</h2>
+        <p class="section-description">精选优质应用，提升您的工作与生活效率</p>
+        
+        <div class="re-app-grid">
+          <div v-for="(app, index) in paginatedApps" :key="index" class="re-app-item" @click="goToDetail(app.id)">
+            <div class="re-app-icon">
+              <img :src="app.logo && app.logo.startsWith('http') ? app.logo : baseUrl + app.logo" :alt="app.name" />
+            </div>
+            <div class="re-app-info">
+              <h3 class="re-app-name">{{ app.name }}</h3>
+              <p class="re-app-description">{{ app.description }}</p>
+              <div class="re-app-meta">
+                <span class="re-app-creator">{{ app.creator.name }}</span>
+                <span class="re-app-rating">★ {{ app.rating || '5' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="featured-header">
+          <div class="page-info">第 {{ currentPage + 1 }} 页 / 共 {{ totalPages }} 页</div>
+          <div class="pagination-controls">
+            <button class="pagination-btn" @click="prevPage" :disabled="currentPage === 0">
+              <span class="arrow">←</span> 上一页
+            </button>
+            <button class="pagination-btn" @click="nextPage" :disabled="currentPage === totalPages - 1">
+              下一页 <span class="arrow">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="app-showcase">
       <div class="carousel-container">
         <div class="carousel" ref="carousel">
@@ -73,7 +107,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { apps as appList } from '../data/appData';
 // 定义基础URL变量
@@ -87,6 +121,31 @@ let isResetting = false;
 
 const apps = ref(appList);
 const clonedCards = ref([]);
+
+// 分页相关变量
+const currentPage = ref(0);
+const itemsPerPage = 6;
+const totalPages = Math.ceil(appList.length / itemsPerPage);
+
+// 获取当前页的应用列表
+const paginatedApps = computed(() => {
+  const start = currentPage.value * itemsPerPage;
+  const end = start + itemsPerPage;
+  return apps.value.slice(start, end);
+});
+
+// 翻页方法
+const prevPage = () => {
+  if (currentPage.value > 0) {
+    currentPage.value--;
+  }
+};
+
+const nextPage = () => {
+  if (currentPage.value < totalPages - 1) {
+    currentPage.value++;
+  }
+};
 
 const showInfo = (index) => {
   const actualIndex = index >= apps.value.length ? index - apps.value.length : index;
@@ -386,6 +445,153 @@ const goToDetail = (id) => {
   background-color: #333;
 }
 
+.featured-apps {
+  padding: 4rem 2rem;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.section-description {
+  text-align: center;
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.featured-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.page-info {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.arrow {
+  font-size: 1.1rem;
+  margin: 0 0.2rem;
+}
+
+.re-app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.re-app-item {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.re-app-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.re-app-icon {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.re-app-icon img {
+  width: 80px;
+  height: 80px;
+  border-radius: 20%;
+  object-fit: cover;
+}
+
+.re-app-info {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  transition: transform 0.3s;
+}
+
+.re-app-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.re-app-description {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.re-app-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.re-app-creator {
+  color: #888;
+}
+
+.re-app-rating {
+  color: #f8b400;
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   .title {
     font-size: 2.5rem;
@@ -394,6 +600,15 @@ const goToDetail = (id) => {
   .app-card {
     flex: 0 0 250px;
     height: 350px;
+  }
+  
+  .app-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .featured-apps {
+    padding: 3rem 1rem;
   }
 }
 </style>
