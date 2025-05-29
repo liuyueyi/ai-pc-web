@@ -101,7 +101,7 @@
                         <a :href="app.previewUrl" target="_blank" class="preview-link">
                             WAP预览
                             <div class="qr-hover" v-if="app.qrCode">
-                                <img :src="baseUrl + app.qrCode" alt="QR Code" class="qr-hover-image" />
+                                <img :src="app.qrCode" alt="QR Code" class="qr-hover-image" />
                             </div>
                         </a>
                     </h3>
