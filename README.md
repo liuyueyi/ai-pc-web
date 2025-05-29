@@ -27,3 +27,14 @@ pnpm dev
 ```sh
 pnpm build
 ```
+
+
+## 应用列表
+
+- [x] [Printo-普印](https://play.google.com/store/apps/details?id=com.git.hui.printo)
+- [x] [ColorPicker-图片提取](https://play.google.com/store/apps/details?id=com.git.hui.colorpicker.google)
+- [x] [TimeGrids-时间格子](https://play.google.com/store/apps/details?id=com.github.hui.lifegrids)
+- [x] [EnjoyReader-享阅小说](https://play.google.com/store/apps/details?id=com.yhh.enjoy.novel.release)
+- [x] [OwlReader-猫头鹰阅读](https://play.google.com/store/apps/details?id=com.yhh.enjoy.novel.release)
+- [x] [成语消消](https://play.google.com/store/apps/details?id=com.yhh.game.chengyuPop)
+
