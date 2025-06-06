@@ -37,5 +37,7 @@ pnpm build
 - [x] [EnjoyReader-享阅小说](https://play.google.com/store/apps/details?id=com.yhh.enjoy.novel.release)
 - [x] [OwlReader-猫头鹰阅读](https://play.google.com/store/apps/details?id=com.yhh.enjoy.novel.release)
 - [x] [成语消消](https://play.google.com/store/apps/details?id=com.yhh.game.chengyuPop)
+- [x] [TextWidget](https://play.google.com/store/apps/details?id=com.yhh.game.textwidget)
+- [x] [Sleep Sound](https://play.google.com/store/apps/details?id=com.git.hui.babymusic.google)
 - [ ] todo
 
