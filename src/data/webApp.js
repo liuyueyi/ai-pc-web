@@ -25,7 +25,7 @@ export const apps = [
         description: "免费在线的图片转线稿工具",
         logo: '/static/webapp/linedraw.jpg',
         googlePlayUrl: "",
-        previewUrl: "https://ai.hhui.top/imgline/index.html",
+        previewUrl: "https://ai.hhui.top/webapp/imgline.html",
     },
     {
         name: "QuickTools",
