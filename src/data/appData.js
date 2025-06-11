@@ -279,6 +279,97 @@ export const apps = [
         ]
     },
     {
+        id: 8,
+        name: 'Text Widget - 文本小部件',
+        description: `极简桌面文字小部件，打造你的个性化桌面！​​`,
+        image: '/static/textwidget/logo.webp',
+        price: 'Free',
+        showInfo: false,
+        creator: {
+            name: '一灰灰',
+            handle: '@almahealth',
+            avatar: 'https://hhui.top/tutorial/logo.svg?height=40&width=40'
+        },
+        logo: '/static/textwidget/logo.webp',
+        previewImages: [
+            '/static/textwidget/s0.webp',
+            '/static/textwidget/s1.webp',
+            '/static/textwidget/s2.webp',
+            '/static/textwidget/s3.webp',
+            '/static/textwidget/s4.webp',
+            '/static/textwidget/s5.webp',
+        ],
+        googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.github.hui.textwidget',
+        androidUrl: '',
+        // 小程序二维码
+        qrCode: '',
+        // h5 预览页面
+        // previewUrl: 'http://cdn.hhui.top/app/offline-chess/index.html#/',
+        features: [
+            '🚀 ​​极简文字小部件​​ – 个性化文字、倒计时、正计时，打造专属桌面！​​',
+            '🎨 ​​随心搭配​​ – 自定义字体、颜色、背景，桌面颜值UP！',
+            '​​⏳ ​​倒计时/正计时​​ – 重要时刻不再错过，专注效率更轻松！',
+            '🌈 适用场景',
+            '- 📅 ​​生活提醒​​：倒计时生日、纪念日、考试、假期…让期待更有仪式感！',
+            '- 📚 ​​学习规划​​：正计时复习、阅读、备考，帮助专注高效学习！',
+            '- 🎯 ​​工作激励​​：打卡任务、专注模式，提升工作效率！',
+        ],
+        testimonials: [
+        ]
+    },
+    {
+        id: 9,
+        name: 'Sleep Sound 白噪音离线版',
+        description: `【沉浸式睡眠革命】告别失眠焦虑！用科学声波重构你的深度睡眠`,
+        image: '/static/babymusic/logo.webp',
+        price: 'Free',
+        showInfo: false,
+        creator: {
+            name: '一灰灰',
+            handle: '@almahealth',
+            avatar: 'https://hhui.top/tutorial/logo.svg?height=40&width=40'
+        },
+        logo: '/static/babymusic/logo.webp',
+        previewImages: [
+            '/static/babymusic/s0.webp',
+            '/static/babymusic/s1.webp',
+            '/static/babymusic/s2.webp',
+            '/static/babymusic/s3.webp',
+            '/static/babymusic/s4.webp',
+        ],
+        googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.git.hui.babymusic.google',
+        androidUrl: '',
+        // 小程序二维码
+        qrCode: '',
+        // h5 预览页面
+        // previewUrl: 'http://cdn.hhui.top/app/offline-chess/index.html#/',
+        features: [
+            '🛌【睡眠改善方案】',
+            '√ 7个场景，59总类型专业白噪音，打造你的专属睡眠处方',
+            '√ 有效缩短入眠时间达37%',
+            '√ 连续6小时深度睡眠护航机制',
+            '√ 智能小憩模式（5/15/30/45/60/90分钟定时）',
+
+            '🔬 科学睡眠原理',
+            '特定频率声波能引导大脑进入α-θ波状态。我们的「APP」通过：',
+            '① 中频声波抑制听觉皮层过度活跃',
+            '② 粉红噪音优化睡眠周期连续性',
+            '③ 环境噪音智能中和算法',
+
+            '🎧 全场景声音库 🎧',
+            '🌿 自然秘境：竹林风吟/雪山回响/热带雨林/沙漠星空',
+            '💦 水韵王国：深海频率/山涧叠瀑/温泉气泡/冰川融雪',
+            '🔊 助眠频率：ASMR触发音/脑波共振',
+
+            '🛡️ 三大守护屏障',
+            '❶ 夜间突发噪音智能缓冲（车流/鸣笛/犬吠）',
+            '❷ 专注力结界：提升工作效率200%的白噪音组合',
+            '❸ 焦虑缓释方案：30分钟冥想放松音效包',
+        ],
+        testimonials: [
+        ]
+    },
+    {
         id: 999,
         name: 'more',
         description: '更多AI生成app正在加载中...',
