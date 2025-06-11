@@ -28,6 +28,13 @@
     </main>
     
     <footer class="footer">
+      <!-- ai-站点-adsens -->
+      <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-5592000528061748"
+         data-ad-slot="2259877961"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
       <p>© {{ new Date().getFullYear() }} APP Showcase. All rights reserved.</p>
     </footer>
   </div>
