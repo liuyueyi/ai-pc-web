@@ -34,4 +34,11 @@ export const apps = [
         googlePlayUrl: "",
         previewUrl: "https://tool.hhui.top/",
     },
+    {
+        name: "像素块填色",
+        description: "在线像素块填色游戏",
+        logo: 'https://tool.hhui.top/icon.svg',
+        googlePlayUrl: "",
+        previewUrl: "https://liuyueyi.github.io/ai-web-case/",
+    },
 ]

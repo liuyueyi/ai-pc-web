@@ -2,7 +2,7 @@
   <div class="app">
     <header class="header">
       <nav class="nav">
-        <div class="logo">APP SHOWCASE</div>
+        <a href="/"><img :src="baseUrl + 'logo.webp'" class="logo"></img></a>
         <div class="nav-links">
           <router-link to="/" class="nav-link">主页</router-link>
           <router-link to="/webapp" class="nav-link">WEB-APP</router-link>
@@ -28,6 +28,13 @@
     </main>
     
     <footer class="footer">
+      <!-- ai-站点-adsens -->
+      <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-5592000528061748"
+         data-ad-slot="2259877961"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
       <p>© {{ new Date().getFullYear() }} APP Showcase. All rights reserved.</p>
     </footer>
   </div>
@@ -35,6 +42,8 @@
 
 <script setup>
 // No additional setup needed for App.vue
+// 定义基础URL变量
+const baseUrl = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL ;
 </script>
 
 <style>
@@ -73,18 +82,20 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 .logo {
-  font-size: 1.5rem;
   font-weight: 700;
   color: #333;
+  width: 4rem;
 }
 
 .nav-links {
   display: flex;
   gap: 2rem;
-  margin-left: -40rem;
+  margin-left: -45rem;
 }
 
 .nav-link {
