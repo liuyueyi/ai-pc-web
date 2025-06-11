@@ -5,6 +5,7 @@
         <div class="logo">APP SHOWCASE</div>
         <div class="nav-links">
           <router-link to="/" class="nav-link">主页</router-link>
+          <router-link to="/webapp" class="nav-link">WEB-APP</router-link>
           <router-link to="/about" class="nav-link">关于我</router-link>
         </div>
         <div class="nav-right">

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import DetailView from '../views/DetailView.vue'
 import AboutView from '../views/AboutView.vue'
+import WebAppView from '../views/WebAppView.vue'
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: '/about',
     name: 'about',
     component: AboutView
+  },
+  {
+    path: '/webapp',
+    name: 'webapp',
+    component: WebAppView
   }
 ]
 const router = createRouter({
