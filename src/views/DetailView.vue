@@ -46,6 +46,10 @@
                         </div>
 
                         <div class="app-actions">
+                            <a :href="app.previewUrl" class="download-btn" target="_blank" rel="noopener noreferrer" v-if="app.previewUrl">
+                                <img src="/static/chrome-app.png" alt="浏览器访问" class="google-play-badge" />
+                            </a>
+
                             <a :href="app.googlePlayUrl" class="download-btn" target="_blank" rel="noopener noreferrer" v-if="app.googlePlayUrl">
                                 <img src="/static/google-play.png" alt="应用市场" class="google-play-badge" />
                             </a>
@@ -315,7 +319,6 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
     margin-bottom: 3rem;
 }
 
@@ -585,7 +588,6 @@ onMounted(() => {
 
     .app-actions {
         flex-direction: column;
-        gap: 1rem;
     }
 }
 

@@ -1,6 +1,45 @@
 export const apps = [
     {
         id: 1,
+        name: '享阅小说 - 精简版',
+        description: '看书阅读器-全网小说免费看',
+        image: '/static/enjoyreader/cover.png',
+        price: 'Free',
+        showInfo: false,
+        creator: {
+            name: '一灰灰',
+            handle: '@almahealth',
+            avatar: 'https://hhui.top/tutorial/logo.svg?height=40&width=40'
+        },
+        logo: '/static/enjoyreader/logo.png',
+        previewImages: [
+            '/static/enjoyreader/g0.png',
+            '/static/enjoyreader/g1.png',
+            '/static/enjoyreader/g2.png',
+            '/static/enjoyreader/g3.png',
+            '/static/enjoyreader/g4.png',
+        ],
+        googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.yhh.enjoy.novel.release',
+        androidUrl: 'http://cdn.hhui.top/app/owl/owlreader_google_1.8.25031711.apk',
+        // 小程序二维码
+        qrCode: '',
+        // h5 预览页面
+        // previewUrl: 'http://cdn.hhui.top/app/offline-chess/index.html#/',
+        features: [
+            '网络小说阅读追书神器，囊括各大网络平台的精品小说资源。在这里，随时随地自由听书、看书，轻松拥有移动电子书书城，享受阅读的乐趣。全库支持有声模式，满足懒人听书需求。',
+            '- 女频精选：《蚀骨蜜宠：前妻浑身是宝》《盛宠之将门嫡长女》《追缉妻宝：夫人很不乖》《金牌法医：娇后世无双》《凰归之帝女凤华》《前妻难追：战少请自重！》……萌宝来袭甜宠无极限，爱如繁星唯美言情，穿越时空废柴逆袭，女生爱不释手；',
+            '- 男频红文：《极品医仙》《百炼成神》《绝世剑神》《超品兵王在都市》《都市无敌神医》……龙血战神剑斩八荒，诡域档案尽是人间异事，穿越时空制霸三国，网游世界王者归来；',
+            '涵盖小说APP资源！玄幻奇幻、言情小说、武侠小说、都市小说、穿越架空、有声小说、全本小说、耽美小说、同人小说、爱情小说、科幻灵异、经典图书等各类有声小说大全，超质感阅读体验！',
+        ],
+        testimonials: [
+            {
+                text: '免费小说无限阅读',
+                author: '一灰'
+            },
+        ]
+    },
+    {
+        id: 2,
         name: 'ColorPicker',
         description: 'ColorPick（拾色） - 用于识别相机或图像中的颜色的应用程序。',
         image: '/static/pickcolor/logo.png', // 首页宣传稿图
@@ -48,49 +87,10 @@ export const apps = [
         ]
     },
     {
-        id: 2,
-        name: 'Offline Chess',
-        description: '离线的AI棋盘对战游戏',
-        image: '/static/chess/logo.png',
-        price: 'Free',
-        showInfo: false,
-        creator: {
-            name: '一灰灰',
-            handle: '@almahealth',
-            avatar: 'https://hhui.top/tutorial/logo.svg?height=40&width=40'
-        },
-        logo: '/static/chess/logo.png',
-        previewImages: [
-            '/static/chess/preview0.jpg',
-            '/static/chess/preview1.jpg',
-            '/static/chess/preview2.jpg',
-            '/static/chess/preview3.jpg',
-            '/static/chess/preview4.jpg',
-        ],
-        googlePlayUrl: '',
-        androidUrl: '',
-        // 小程序二维码
-        qrCode: '',
-        // h5 预览页面
-        // previewUrl: 'http://cdn.hhui.top/app/offline-chess/index.html#/',
-        features: [
-            'AI离线对战棋类游戏。',
-            '- 五子棋对战。',
-            '- 黑白棋对战。',
-            '- 九子棋对战。',
-        ],
-        testimonials: [
-            // {
-            //     text: 'RobotFriend has opened up a whole new revenue stream for my digital art. The platform is intuitive and the community is amazing!',
-            //     author: 'Alex M., Digital Artist'
-            // },
-        ]
-    },
-    {
         id: 3,
-        name: '享阅小说 - 精简版',
-        description: '看书阅读器-全网小说免费看',
-        image: '/static/enjoyreader/cover.png',
+        name: '2048 Rollback',
+        description: '2048豪华版',
+        image: '/static/2048/logo.webp',
         price: 'Free',
         showInfo: false,
         creator: {
@@ -98,29 +98,26 @@ export const apps = [
             handle: '@almahealth',
             avatar: 'https://hhui.top/tutorial/logo.svg?height=40&width=40'
         },
-        logo: '/static/enjoyreader/logo.png',
+        logo: '/static/2048/logo.webp',
         previewImages: [
-            '/static/enjoyreader/g0.png',
-            '/static/enjoyreader/g1.png',
-            '/static/enjoyreader/g2.png',
-            '/static/enjoyreader/g3.png',
-            '/static/enjoyreader/g4.png',
+            '/static/2048/g0.webp',
+            '/static/2048/g1.webp',
+            '/static/2048/g2.webp',
+            '/static/2048/g3.webp',
         ],
-        googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.yhh.enjoy.novel.release',
-        androidUrl: 'http://cdn.hhui.top/app/owl/owlreader_google_1.8.25031711.apk',
+        googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.yhh.game.g2048',
+        // androidUrl: 'http://cdn.hhui.top/app/owl/owlreader_google_1.8.25031711.apk',
         // 小程序二维码
         qrCode: '',
         // h5 预览页面
         // previewUrl: 'http://cdn.hhui.top/app/offline-chess/index.html#/',
         features: [
-            '网络小说阅读追书神器，囊括各大网络平台的精品小说资源。在这里，随时随地自由听书、看书，轻松拥有移动电子书书城，享受阅读的乐趣。全库支持有声模式，满足懒人听书需求。',
-            '- 女频精选：《蚀骨蜜宠：前妻浑身是宝》《盛宠之将门嫡长女》《追缉妻宝：夫人很不乖》《金牌法医：娇后世无双》《凰归之帝女凤华》《前妻难追：战少请自重！》……萌宝来袭甜宠无极限，爱如繁星唯美言情，穿越时空废柴逆袭，女生爱不释手；',
-            '- 男频红文：《极品医仙》《百炼成神》《绝世剑神》《超品兵王在都市》《都市无敌神医》……龙血战神剑斩八荒，诡域档案尽是人间异事，穿越时空制霸三国，网游世界王者归来；',
-            '涵盖小说APP资源！玄幻奇幻、言情小说、武侠小说、都市小说、穿越架空、有声小说、全本小说、耽美小说、同人小说、爱情小说、科幻灵异、经典图书等各类有声小说大全，超质感阅读体验！',
+            '2048 回滚是一款经典的 2048 益智游戏，支持回滚和撤消。滑动方块并合并它们以达到 2048。从 2 开始，到 32、128、512、1024，最后到 2048。',
+            '如果你喜欢数字游戏和数字益智游戏，那就来玩免费的 2048 数字益智游戏吧！这是成人最好的脑筋急转弯和脑力游戏之一。在一个脑力游戏中享受不同的游戏，困难的游戏和有趣的游戏！ 2048 益智游戏是一款有趣的免费游戏，您可以在没有网络和离线的情况下玩！',
         ],
         testimonials: [
             {
-                text: '免费小说无限阅读',
+                text: '无广告，支持回退',
                 author: '一灰'
             },
         ]
@@ -187,10 +184,10 @@ export const apps = [
         },
         logo: '/static/chengyu/logo.png',
         previewImages: [
-            '/static/chengyu/s1.jpeg',
-            '/static/chengyu/s2.jpeg',
-            '/static/chengyu/s3.jpeg',
-            '/static/chengyu/s4.jpeg',
+            '/static/chengyu/g1.jpeg',
+            '/static/chengyu/g2.jpeg',
+            '/static/chengyu/g3.jpeg',
+            '/static/chengyu/g4.jpeg',
         ],
         googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.yhh.game.chengyuPop',
         androidUrl: '',
@@ -369,6 +366,46 @@ export const apps = [
         testimonials: [
         ]
     },
+    {
+        id: 10,
+        name: 'Offline Chess',
+        description: '离线的AI棋盘对战游戏',
+        image: '/static/chess/logo.png',
+        price: 'Free',
+        showInfo: false,
+        creator: {
+            name: '一灰灰',
+            handle: '@almahealth',
+            avatar: 'https://hhui.top/tutorial/logo.svg?height=40&width=40'
+        },
+        logo: '/static/chess/logo.png',
+        previewImages: [
+            '/static/chess/preview0.jpg',
+            '/static/chess/preview1.jpg',
+            '/static/chess/preview2.jpg',
+            '/static/chess/preview3.jpg',
+            '/static/chess/preview4.jpg',
+        ],
+        googlePlayUrl: '',
+        androidUrl: '',
+        // 小程序二维码
+        qrCode: '',
+        // h5 预览页面
+        // previewUrl: 'http://cdn.hhui.top/app/offline-chess/index.html#/',
+        features: [
+            'AI离线对战棋类游戏。',
+            '- 五子棋对战。',
+            '- 黑白棋对战。',
+            '- 九子棋对战。',
+        ],
+        testimonials: [
+            // {
+            //     text: 'RobotFriend has opened up a whole new revenue stream for my digital art. The platform is intuitive and the community is amazing!',
+            //     author: 'Alex M., Digital Artist'
+            // },
+        ]
+    },
+
     {
         id: 999,
         name: 'more',
