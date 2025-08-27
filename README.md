@@ -39,5 +39,5 @@ pnpm build
 - [x] [成语消消](https://play.google.com/store/apps/details?id=com.yhh.game.chengyuPop)
 - [x] [TextWidget](https://play.google.com/store/apps/details?id=com.yhh.game.textwidget)
 - [x] [Sleep Sound](https://play.google.com/store/apps/details?id=com.git.hui.babymusic.google)
-- [ ] 待添加
+- [ ] 待添加--
 
