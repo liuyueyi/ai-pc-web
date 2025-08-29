@@ -28,7 +28,6 @@ pnpm dev
 pnpm build
 ```
 
-
 ## 应用列表
 
 - [x] [Printo-普印](https://play.google.com/store/apps/details?id=com.git.hui.printo)
@@ -40,4 +39,3 @@ pnpm build
 - [x] [TextWidget](https://play.google.com/store/apps/details?id=com.yhh.game.textwidget)
 - [x] [Sleep Sound](https://play.google.com/store/apps/details?id=com.git.hui.babymusic.google)
 - [ ] 待添加--
-

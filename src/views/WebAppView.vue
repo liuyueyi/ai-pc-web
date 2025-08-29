@@ -3,13 +3,33 @@
     <h1 class="title">Web 应用列表</h1>
     <div class="webapp-list">
       <div v-for="app in webapps" :key="app.id" class="webapp-card">
-        <img :src="app.logo && app.logo.startsWith('http') ? app.logo : baseUrl + app.logo" :alt="app.name" class="webapp-logo" />
+        <img
+          :src="
+            app.logo && app.logo.startsWith('http')
+              ? app.logo
+              : baseUrl + app.logo
+          "
+          :alt="app.name"
+          class="webapp-logo"
+        />
         <div class="webapp-info">
           <h2 class="webapp-name">{{ app.name }}</h2>
           <p class="webapp-desc">{{ app.description }}</p>
           <div class="webapp-links">
-            <a v-if="app.previewUrl" :href="app.previewUrl" target="_blank" class="webapp-link">在线体验</a>
-            <a v-if="app.googlePlayUrl" :href="app.googlePlayUrl" target="_blank" class="webapp-link">Google Play</a>
+            <a
+              v-if="app.previewUrl"
+              :href="app.previewUrl"
+              target="_blank"
+              class="webapp-link"
+              >在线体验</a
+            >
+            <a
+              v-if="app.googlePlayUrl"
+              :href="app.googlePlayUrl"
+              target="_blank"
+              class="webapp-link"
+              >Google Play</a
+            >
             <!-- <span v-else class="webapp-link-disabled">暂无链接</span> -->
           </div>
         </div>
@@ -19,15 +39,16 @@
 </template>
 
 <script setup>
-import { apps } from '../data/webApp.js'
-import { computed } from 'vue'
+import { apps } from '../data/webApp.js';
+import { computed } from 'vue';
 // 定义基础URL变量
-const baseUrl = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL ;
+const baseUrl =
+  import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 
 // 只展示有 logo、name、description 的 app
 const webapps = computed(() =>
   apps.filter(app => app.logo && app.name && app.description)
-)
+);
 </script>
 
 <style scoped>
@@ -51,7 +72,7 @@ const webapps = computed(() =>
 .webapp-card {
   background: #fff;
   border-radius: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   width: 320px;
   display: flex;
   flex-direction: column;
@@ -60,7 +81,7 @@ const webapps = computed(() =>
   transition: box-shadow 0.2s;
 }
 .webapp-card:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 .webapp-logo {
   width: 80px;
@@ -97,7 +118,9 @@ const webapps = computed(() =>
   border: 1px solid #1976d2;
   border-radius: 0.5rem;
   padding: 0.3rem 1rem;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .webapp-link:hover {
   background: #1976d2;
@@ -109,4 +132,4 @@ const webapps = computed(() =>
   border-radius: 0.5rem;
   padding: 0.3rem 1rem;
 }
-</style> 
+</style>

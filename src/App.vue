@@ -2,7 +2,7 @@
   <div class="app">
     <header class="header">
       <nav class="nav">
-        <a href="/"><img :src="baseUrl + 'logo.webp'" class="logo"></img></a>
+        <a href="/"><img :src="baseUrl + 'logo.webp'" class="logo" /></a>
         <div class="nav-links">
           <router-link to="/" class="nav-link">主页</router-link>
           <router-link to="/webapp" class="nav-link">WEB-APP</router-link>
@@ -13,12 +13,16 @@
             <i class="search-icon"></i>
           </button>
           <div class="avatar">
-            <img src="https://hhui.top/tutorial/logo.svg" alt="User" class="avatar-img" />
+            <img
+              src="https://hhui.top/tutorial/logo.svg"
+              alt="User"
+              class="avatar-img"
+            />
           </div>
         </div>
       </nav>
     </header>
-    
+
     <main class="main-content">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
@@ -26,16 +30,20 @@
         </transition>
       </router-view>
     </main>
-    
+
     <footer class="footer">
       <!-- ai-站点-adsens -->
-      <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-5592000528061748"
-         data-ad-slot="2259877961"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-      <p>© {{ new Date().getFullYear() }} APP Showcase. All rights reserved.</p>
+      <ins
+        class="adsbygoogle"
+        style="display: block"
+        data-ad-client="ca-pub-5592000528061748"
+        data-ad-slot="2259877961"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+      <p>
+        © {{ new Date().getFullYear() }} APP Showcase. All rights reserved.
+      </p>
     </footer>
   </div>
 </template>
@@ -43,7 +51,8 @@
 <script setup>
 // No additional setup needed for App.vue
 // 定义基础URL变量
-const baseUrl = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL ;
+const baseUrl =
+  import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 </script>
 
 <style>
@@ -105,7 +114,8 @@ body {
   transition: color 0.2s;
 }
 
-.nav-link:hover, .router-link-active {
+.nav-link:hover,
+.router-link-active {
   color: #333;
 }
 

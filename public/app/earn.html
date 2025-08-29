@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 基本SEO元标签 -->
+    <title>实时收入计算器 - 在线工资计算工具 | 精确计算日薪时薪月薪年薪</title>
+    <meta
+      name="description"
+      content="专业的实时收入计算器，支持日薪、时薪、月薪、年薪精确计算。设置工作时间和月收入，实时查看收入增长。完全免费的在线工资计算工具，帮助您更好地规划财务。"
+    />
+    <meta
+      name="keywords"
+      content="收入计算器,工资计算器,薪资计算,时薪计算,日薪计算,月薪计算,年薪计算,实时收入,工资工具,财务规划,在线计算器"
+    />
+    <meta name="author" content="AI-PC-Web" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#3498db" />
+
+    <!-- Open Graph 标签 (Facebook) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="实时收入计算器 - 精确计算工资收入" />
+    <meta
+      property="og:description"
+      content="专业的在线收入计算工具，支持实时、日、月、年收入计算。免费使用，精确计算您的工资收入。"
+    />
+    <meta property="og:url" content="https://app.ppai.top/app/earn.html" />
+    <meta property="og:site_name" content="AI-PC-Web" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <!-- Twitter Card 标签 -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="实时收入计算器 - 精确计算工资收入" />
+    <meta
+      name="twitter:description"
+      content="专业的在线收入计算工具，支持实时、日、月、年收入计算。免费使用，精确计算您的工资收入。"
+    />
+
+    <!-- 移动端优化 -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="收入计算器" />
+
+    <!-- 图标和收藏夹 -->
+    <link rel="icon" type="image/webp" href="./static/earn.webp" />
+    <link rel="apple-touch-icon" href="./static/earn.webp" />
+    <link rel="shortcut icon" href="./static/earn.webp" />
+
+    <!-- 规范链接 -->
+    <link rel="canonical" href="https://app.ppai.top/app/earn.html" />
+
+    <!-- 预加载关键资源 -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+
+    <!-- 结构化数据 (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "实时收入计算器",
+        "description": "专业的实时收入计算器，支持日薪、时薪、月薪、年薪精确计算",
+        "url": "https://app.ppai.top/app/earn.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "CNY"
+        },
+        "featureList": [
+          "实时收入计算",
+          "日薪计算",
+          "月薪计算",
+          "年薪计算",
+          "工作时间设置",
+          "数据本地保存"
+        ],
+        "screenshot": "https://app.ppai.top/app/static/earn-screenshot.jpg",
+        "author": {
+          "@type": "Organization",
+          "name": "AI-PC-Web"
+        }
+      }
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        color: #333;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+      }
+
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1080px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        margin-top: 20px;
+      }
+
+      .header {
+        background: #2c3e50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+
+      .settings-toggle {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        transition: all 0.3s;
+      }
+
+      .settings-toggle:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: rotate(45deg);
+      }
+
+      .settings-container {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.5s ease-out,
+          padding 0.5s ease;
+      }
+
+      .settings-container.visible {
+        max-height: 1000px;
+        padding: 20px;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border 0.3s;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: #3498db;
+        outline: none;
+      }
+
+      .time-inputs {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .time-inputs > div {
+        flex: 1;
+        min-width: 120px;
+      }
+
+      .button-group {
+        display: flex;
+        gap: 10px;
+        margin: 10px 0 20px;
+      }
+
+      button {
+        padding: 14px 25px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s;
+        flex: 1;
+      }
+
+      #calculate-btn {
+        background: #3498db;
+        color: white;
+      }
+
+      #calculate-btn:hover {
+        background: #2980b9;
+      }
+
+      #reset-btn {
+        background: #e74c3c;
+        color: white;
+      }
+
+      #reset-btn:hover {
+        background: #c0392b;
+      }
+
+      .display-area {
+        text-align: center;
+        padding: 50px 40px;
+        background: #f8f9fa;
+        border-radius: 0 0 20px 20px;
+        min-height: 500px;
+      }
+
+      .income-toggle {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .toggle-btn {
+        padding: 12px 24px;
+        border: 2px solid #3498db;
+        background: white;
+        color: #3498db;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 16px;
+        font-weight: 500;
+        min-width: 120px;
+      }
+
+      .toggle-btn:hover {
+        background: #ecf0f1;
+      }
+
+      .toggle-btn.active {
+        background: #3498db;
+        color: white;
+      }
+
+      .income-label {
+        font-size: 24px;
+        color: #7f8c8d;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .income-display {
+        font-size: 72px;
+        font-weight: bold;
+        color: #27ae60;
+        margin: 30px 0;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        transition: all 0.5s;
+        line-height: 1.2;
+      }
+
+      .income-display.increasing {
+        color: #2ecc71;
+        transform: scale(1.05);
+      }
+
+      .breakdown {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .breakdown-item {
+        background: white;
+        padding: 25px 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        min-width: 180px;
+        flex: 1;
+        max-width: 220px;
+      }
+
+      .breakdown-item h3 {
+        color: #7f8c8d;
+        font-size: 16px;
+        margin-bottom: 12px;
+        font-weight: 500;
+      }
+
+      .breakdown-value {
+        font-size: 22px;
+        font-weight: bold;
+        color: #2c3e50;
+        line-height: 1.3;
+      }
+
+      .last-updated {
+        text-align: center;
+        margin-top: 10px;
+        color: #95a5a6;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .save-indicator {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #27ae60;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+
+      .save-indicator.visible {
+        opacity: 1;
+      }
+
+      .footer {
+        margin-top: 20px;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        opacity: 0.8;
+      }
+
+      /* SEO和无障碍支持 */
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .input-help {
+        display: block;
+        font-size: 12px;
+        color: #7f8c8d;
+        margin-top: 4px;
+      }
+
+      @media (max-width: 600px) {
+        .time-inputs {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .breakdown {
+          flex-direction: column;
+          margin-top: 30px;
+        }
+
+        .income-display {
+          font-size: 56px;
+        }
+
+        .income-label {
+          font-size: 20px;
+        }
+
+        .display-area {
+          padding: 30px 20px;
+          min-height: 400px;
+        }
+
+        .toggle-btn {
+          padding: 10px 20px;
+          font-size: 14px;
+          min-width: 100px;
+        }
+
+        .breakdown-item {
+          margin: 8px 0;
+          min-width: auto;
+          max-width: none;
+        }
+
+        .button-group {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main role="main" aria-label="实时收入计算器">
+      <div class="container">
+        <header class="header">
+          <h1>实时收入计算器</h1>
+          <p>设置您的收入参数，实时查看收入增长</p>
+          <button class="settings-toggle" aria-label="打开设置面板">⚙️</button>
+        </header>
+
+        <section
+          class="settings-container"
+          id="settings-container"
+          aria-labelledby="settings-title"
+        >
+          <h2 id="settings-title" class="visually-hidden">收入计算设置</h2>
+          <div class="input-group">
+            <label for="monthly-income">月收入（元）</label>
+            <input
+              type="number"
+              id="monthly-income"
+              placeholder="请输入您的月收入"
+              min="0"
+              aria-describedby="monthly-income-desc"
+            />
+            <small id="monthly-income-desc" class="input-help"
+              >请输入您的每月固定收入</small
+            >
+          </div>
+
+          <div class="input-group">
+            <label>每日工作时间</label>
+            <div class="time-inputs">
+              <div>
+                <label for="work-start">上班时间</label>
+                <input type="time" id="work-start" value="09:00" />
+              </div>
+              <div>
+                <label for="lunch-start">午休开始</label>
+                <input type="time" id="lunch-start" value="12:00" />
+              </div>
+              <div>
+                <label for="lunch-end">午休结束</label>
+                <input type="time" id="lunch-end" value="14:00" />
+              </div>
+              <div>
+                <label for="work-end">下班时间</label>
+                <input type="time" id="work-end" value="18:00" />
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="work-days">每月工作天数</label>
+            <select id="work-days">
+              <option value="22">双休 (22天)</option>
+              <option value="24">大小周 (24天)</option>
+              <option value="26">单休 (26天)</option>
+              <option value="28">无休 (28天，按法定工作日)</option>
+              <option value="custom">自定义</option>
+            </select>
+          </div>
+
+          <div
+            class="input-group"
+            id="custom-days-container"
+            style="display: none"
+          >
+            <label for="custom-days">自定义工作天数</label>
+            <input
+              type="number"
+              id="custom-days"
+              placeholder="请输入工作天数"
+              min="1"
+              max="31"
+            />
+          </div>
+
+          <div class="button-group">
+            <button id="calculate-btn">开始计算</button>
+            <button id="reset-btn">重置设置</button>
+          </div>
+        </section>
+
+        <div class="display-area">
+          <div class="income-toggle">
+            <button class="toggle-btn active" data-period="daily">
+              今日收入
+            </button>
+            <button class="toggle-btn" data-period="monthly">本月收入</button>
+            <button class="toggle-btn" data-period="yearly">本年收入</button>
+          </div>
+          <div class="income-label" id="income-label">
+            截至当前时间，您的收入为
+          </div>
+          <div class="income-display" id="income-result">0.00 元</div>
+
+          <div class="breakdown">
+            <div class="breakdown-item">
+              <h3>日薪</h3>
+              <div class="breakdown-value" id="daily-salary">0.00 元</div>
+            </div>
+            <div class="breakdown-item">
+              <h3>时薪</h3>
+              <div class="breakdown-value" id="hourly-salary">0.00 元</div>
+            </div>
+            <div class="breakdown-item">
+              <h3>本月已工作天数</h3>
+              <div class="breakdown-value" id="worked-days">0 天</div>
+            </div>
+            <div class="breakdown-item">
+              <h3>今日已工作小时</h3>
+              <div class="breakdown-value" id="worked-hours">0 小时</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="last-updated" id="last-updated">最后更新: --</div>
+      </div>
+
+      <div class="save-indicator" id="save-indicator">设置已保存</div>
+
+      <footer class="footer" role="contentinfo">
+        <p>
+          实时收入计算器 &copy; <span id="current-year"></span> -
+          您的收入随时可见
+        </p>
+        <p>
+          <small>免费在线工资计算工具 | 支持实时、日、月、年收入计算</small>
+        </p>
+      </footer>
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const monthlyIncomeInput = document.getElementById('monthly-income');
+        const workStartInput = document.getElementById('work-start');
+        const lunchStartInput = document.getElementById('lunch-start');
+        const lunchEndInput = document.getElementById('lunch-end');
+        const workEndInput = document.getElementById('work-end');
+        const workDaysSelect = document.getElementById('work-days');
+        const customDaysContainer = document.getElementById(
+          'custom-days-container'
+        );
+        const customDaysInput = document.getElementById('custom-days');
+        const calculateBtn = document.getElementById('calculate-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const incomeResult = document.getElementById('income-result');
+        const incomeLabel = document.getElementById('income-label');
+        const dailySalaryElement = document.getElementById('daily-salary');
+        const hourlySalaryElement = document.getElementById('hourly-salary');
+        const workedDaysElement = document.getElementById('worked-days');
+        const workedHoursElement = document.getElementById('worked-hours');
+        const lastUpdatedElement = document.getElementById('last-updated');
+        const settingsContainer = document.getElementById('settings-container');
+        const settingsToggle = document.querySelector('.settings-toggle');
+        const saveIndicator = document.getElementById('save-indicator');
+        const toggleBtns = document.querySelectorAll('.toggle-btn');
+
+        let updateInterval;
+        let lastIncome = 0;
+        let currentPeriod = 'daily'; // daily, monthly, yearly
+
+        // 设置当前年份
+        document.getElementById('current-year').textContent =
+          new Date().getFullYear();
+
+        // 切换收入显示类型
+        toggleBtns.forEach(btn => {
+          btn.addEventListener('click', function () {
+            // 移除所有按钮的active类
+            toggleBtns.forEach(b => b.classList.remove('active'));
+            // 给当前按钮添加active类
+            this.classList.add('active');
+            // 更新当前周期
+            currentPeriod = this.dataset.period;
+            // 重新计算收入
+            if (monthlyIncomeInput.value) {
+              calculateIncome();
+            }
+          });
+        });
+
+        // 加载保存的设置
+        loadSavedSettings();
+
+        // 显示/隐藏设置区域
+        settingsToggle.addEventListener('click', function () {
+          settingsContainer.classList.toggle('visible');
+          settingsToggle.textContent = settingsContainer.classList.contains(
+            'visible'
+          )
+            ? '✕'
+            : '⚙️';
+        });
+
+        // 显示/隐藏自定义工作天数输入框
+        workDaysSelect.addEventListener('change', function () {
+          if (this.value === 'custom') {
+            customDaysContainer.style.display = 'block';
+          } else {
+            customDaysContainer.style.display = 'none';
+          }
+          saveSettings();
+        });
+
+        // 输入变化时保存设置
+        const inputElements = [
+          monthlyIncomeInput,
+          workStartInput,
+          lunchStartInput,
+          lunchEndInput,
+          workEndInput,
+          workDaysSelect,
+          customDaysInput,
+        ];
+
+        inputElements.forEach(input => {
+          input.addEventListener('change', saveSettings);
+        });
+
+        // 计算按钮点击事件
+        calculateBtn.addEventListener('click', function () {
+          // 清除之前的定时器
+          if (updateInterval) {
+            clearInterval(updateInterval);
+          }
+
+          // 隐藏设置区域
+          settingsContainer.classList.remove('visible');
+          settingsToggle.textContent = '⚙️';
+
+          calculateIncome();
+          // 每秒更新一次，实现跳动效果
+          updateInterval = setInterval(calculateIncome, 1000);
+
+          // 保存设置
+          saveSettings();
+        });
+
+        // 重置按钮点击事件
+        resetBtn.addEventListener('click', function () {
+          if (confirm('确定要重置所有设置吗？这将清除所有保存的数据。')) {
+            localStorage.removeItem('incomeCalculatorSettings');
+            location.reload();
+          }
+        });
+
+        function calculateIncome() {
+          // 获取输入值
+          const monthlyIncome = parseFloat(monthlyIncomeInput.value);
+          if (isNaN(monthlyIncome) || monthlyIncome <= 0) {
+            alert('请输入有效的月收入');
+            return;
+          }
+
+          // 获取工作天数
+          let workDaysPerMonth;
+          if (workDaysSelect.value === 'custom') {
+            workDaysPerMonth = parseFloat(customDaysInput.value);
+            if (
+              isNaN(workDaysPerMonth) ||
+              workDaysPerMonth <= 0 ||
+              workDaysPerMonth > 31
+            ) {
+              alert('请输入有效的工作天数（1-31）');
+              return;
+            }
+          } else {
+            workDaysPerMonth = parseFloat(workDaysSelect.value);
+          }
+
+          // 计算日薪
+          const dailySalary = monthlyIncome / workDaysPerMonth;
+
+          // 计算每日工作小时数
+          const workStartTime = timeStringToDate(workStartInput.value);
+          const lunchStartTime = timeStringToDate(lunchStartInput.value);
+          const lunchEndTime = timeStringToDate(lunchEndInput.value);
+          const workEndTime = timeStringToDate(workEndInput.value);
+
+          const morningHours =
+            (lunchStartTime - workStartTime) / (1000 * 60 * 60);
+          const afternoonHours =
+            (workEndTime - lunchEndTime) / (1000 * 60 * 60);
+          const dailyWorkHours = morningHours + afternoonHours;
+
+          // 计算时薪
+          const hourlySalary = dailySalary / dailyWorkHours;
+
+          // 获取当前日期和时间
+          const now = new Date();
+          const currentYear = now.getFullYear();
+          const currentMonth = now.getMonth();
+
+          // 计算本月第一天
+          const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
+
+          // 计算本月已过天数（包括今天）
+          const daysPassed =
+            Math.floor((now - firstDayOfMonth) / (1000 * 60 * 60 * 24)) + 1;
+
+          // 计算本月工作日（从1号到今天）
+          let workedDays = 0;
+          for (let i = 0; i < daysPassed; i++) {
+            const date = new Date(currentYear, currentMonth, i + 1);
+            // 简单假设：周一至周五为工作日
+            if (date.getDay() !== 0 && date.getDay() !== 6) {
+              workedDays++;
+            }
+          }
+
+          // 计算今天已工作小时数
+          let workedHoursToday = 0;
+          const currentTime =
+            now.getHours() + now.getMinutes() / 60 + now.getSeconds() / 3600;
+
+          if (currentTime >= timeStringToHours(workStartInput.value)) {
+            // 上午工作时间计算
+            const morningEnd = Math.min(
+              currentTime,
+              timeStringToHours(lunchStartInput.value)
+            );
+            workedHoursToday += Math.max(
+              0,
+              morningEnd - timeStringToHours(workStartInput.value)
+            );
+
+            // 如果已经过了午休时间，计算下午工作时间
+            if (currentTime > timeStringToHours(lunchEndInput.value)) {
+              workedHoursToday += Math.min(
+                currentTime - timeStringToHours(lunchEndInput.value),
+                timeStringToHours(workEndInput.value) -
+                  timeStringToHours(lunchEndInput.value)
+              );
+            }
+          }
+
+          // 根据选择的周期计算收入
+          let displayIncome = 0;
+          let labelText = '';
+
+          switch (currentPeriod) {
+            case 'daily':
+              // 今日收入
+              // 如果今天是周末，不挣钱
+              if (now.getDay() === 0 || now.getDay() === 6) {
+                displayIncome = 0;
+                labelText = '今天是周末，休息哦~';
+                break;
+              }
+              // 还没有到开工时间
+              if (currentTime < timeStringToHours(workStartInput.value)) {
+                displayIncome = 0;
+                labelText = '今天还没到开工时间哦~';
+                break;
+              }
+              // 计算今日收入
+
+              displayIncome = workedHoursToday * hourlySalary;
+              labelText = '今日收入为';
+              break;
+
+            case 'monthly':
+              // 本月收入
+              // 实时收入计算（原逻辑）
+              totalIncome = 0;
+              if (workedDays > 0) {
+                const fullDays =
+                  currentTime < timeStringToHours(workEndInput.value)
+                    ? workedDays - 1
+                    : workedDays;
+                totalIncome += fullDays * dailySalary;
+
+                // 今天不是周末，才需要计算今日收入
+                if (now.getDay() !== 0 && now.getDay() !== 6) {
+                  if (currentTime >= timeStringToHours(workStartInput.value)) {
+                    totalIncome += workedHoursToday * hourlySalary;
+                  }
+                }
+              }
+              displayIncome = totalIncome;
+              labelText = '本月收入为';
+              break;
+
+            case 'yearly':
+              // 本年收入（基于实际工作日计算）
+              let yearlyIncome = 0;
+              const currentYear = now.getFullYear();
+              const currentMonth = now.getMonth(); // 0-11
+
+              // 计算已完整工作的月份收入
+              for (let month = 0; month < currentMonth; month++) {
+                yearlyIncome += monthlyIncome;
+              }
+
+              // 加上当前月份的收入（使用本月收入的计算逻辑）
+              let currentMonthIncome = 0;
+              if (workedDays > 0) {
+                const fullDays =
+                  currentTime < timeStringToHours(workEndInput.value)
+                    ? workedDays - 1
+                    : workedDays;
+                currentMonthIncome += fullDays * dailySalary;
+
+                // 今天不是周末，才需要计算今日收入
+                if (now.getDay() !== 0 && now.getDay() !== 6) {
+                  if (currentTime >= timeStringToHours(workStartInput.value)) {
+                    currentMonthIncome += workedHoursToday * hourlySalary;
+                  }
+                }
+              }
+
+              yearlyIncome += currentMonthIncome;
+              displayIncome = yearlyIncome;
+              labelText = '本年收入为';
+              break;
+          }
+
+          // 添加跳动效果
+          if (displayIncome > lastIncome) {
+            incomeResult.classList.add('increasing');
+            setTimeout(() => {
+              incomeResult.classList.remove('increasing');
+            }, 500);
+          }
+
+          // 更新UI
+          incomeLabel.textContent = labelText;
+          incomeResult.textContent = displayIncome.toFixed(2) + ' 元';
+          dailySalaryElement.textContent = dailySalary.toFixed(2) + ' 元';
+          hourlySalaryElement.textContent = hourlySalary.toFixed(2) + ' 元';
+          workedDaysElement.textContent = workedDays + ' 天';
+          workedHoursElement.textContent =
+            workedHoursToday.toFixed(2) + ' 小时';
+
+          // 更新最后更新时间
+          lastUpdatedElement.textContent = '最后更新: ' + now.toLocaleString();
+
+          // 保存当前收入用于下次比较
+          lastIncome = displayIncome;
+        }
+
+        // 保存设置到localStorage
+        function saveSettings() {
+          const settings = {
+            monthlyIncome: monthlyIncomeInput.value,
+            workStart: workStartInput.value,
+            lunchStart: lunchStartInput.value,
+            lunchEnd: lunchEndInput.value,
+            workEnd: workEndInput.value,
+            workDays: workDaysSelect.value,
+            customDays: customDaysInput.value,
+          };
+
+          localStorage.setItem(
+            'incomeCalculatorSettings',
+            JSON.stringify(settings)
+          );
+
+          // 显示保存提示
+          saveIndicator.classList.add('visible');
+          setTimeout(() => {
+            saveIndicator.classList.remove('visible');
+          }, 2000);
+        }
+
+        // 从localStorage加载设置
+        function loadSavedSettings() {
+          const savedSettings = localStorage.getItem(
+            'incomeCalculatorSettings'
+          );
+
+          if (savedSettings) {
+            const settings = JSON.parse(savedSettings);
+
+            monthlyIncomeInput.value = settings.monthlyIncome || '';
+            workStartInput.value = settings.workStart || '09:00';
+            lunchStartInput.value = settings.lunchStart || '12:00';
+            lunchEndInput.value = settings.lunchEnd || '13:00';
+            workEndInput.value = settings.workEnd || '18:00';
+            workDaysSelect.value = settings.workDays || '22';
+            customDaysInput.value = settings.customDays || '';
+
+            // 显示自定义天数输入框（如果选择了自定义）
+            if (workDaysSelect.value === 'custom') {
+              customDaysContainer.style.display = 'block';
+            }
+
+            // 如果月收入已设置，自动开始计算
+            if (monthlyIncomeInput.value) {
+              // 清除之前的定时器
+              if (updateInterval) {
+                clearInterval(updateInterval);
+              }
+
+              // 隐藏设置区域
+              settingsContainer.classList.remove('visible');
+              settingsToggle.textContent = '⚙️';
+
+              // 立即计算一次
+              calculateIncome();
+              // 每秒更新一次，实现跳动效果
+              updateInterval = setInterval(calculateIncome, 1000);
+            }
+          }
+        }
+
+        // 辅助函数：将时间字符串转换为Date对象（今天日期）
+        function timeStringToDate(timeString) {
+          const [hours, minutes] = timeString.split(':').map(Number);
+          const date = new Date();
+          date.setHours(hours, minutes, 0, 0);
+          return date;
+        }
+
+        // 辅助函数：将时间字符串转换为小时数
+        function timeStringToHours(timeString) {
+          const [hours, minutes] = timeString.split(':').map(Number);
+          return hours + minutes / 60;
+        }
+      });
+    </script>
+  </body>
+</html>

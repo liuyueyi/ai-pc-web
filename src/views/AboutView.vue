@@ -22,7 +22,11 @@
           </p>
         </div>
         <div class="mission-image">
-          <img :src="`${baseUrl}/static/about-cover.jpg`" alt="Our Mission" class="image" />
+          <img
+            :src="`${baseUrl}/static/about-cover.jpg`"
+            alt="Our Mission"
+            class="image"
+          />
         </div>
       </div>
     </section>
@@ -35,7 +39,11 @@
         <div class="team-grid">
           <div class="team-member">
             <div class="member-avatar">
-              <img src="https://hhui.top/tutorial/logo.svg" alt="Team Member" class="avatar-image" />
+              <img
+                src="https://hhui.top/tutorial/logo.svg"
+                alt="Team Member"
+                class="avatar-image"
+              />
             </div>
             <h3 class="member-name">一灰灰</h3>
             <p class="member-role">Maintainer</p>
@@ -45,21 +53,27 @@
           </div>
           <div class="team-member">
             <div class="">
-              <img src="https://spring.hhui.top/spring-blog/imgs/info/wx.jpg" class="avatar-image" />
+              <img
+                src="https://spring.hhui.top/spring-blog/imgs/info/wx.jpg"
+                class="avatar-image"
+              />
             </div>
             <h3 class="member-name">一灰灰blog</h3>
             <p class="member-role">微信公众号</p>
-            <p class="member-bio">
-            </p>
+            <p class="member-bio"></p>
           </div>
           <div class="team-member">
             <div class="">
-              <img src="/static/placeholder.svg?height=200&width=200" class="avatar-image" />
+              <img
+                src="/static/placeholder.svg?height=200&width=200"
+                class="avatar-image"
+              />
             </div>
             <h3 class="member-name">广告位招商</h3>
             <p class="member-role">QQ: 3302797840</p>
             <p class="member-bio">
-              email: <a href="mailto:yihuihuiyi@gmail.com">yihuihuiyi@gmail.com</a>
+              email:
+              <a href="mailto:yihuihuiyi@gmail.com">yihuihuiyi@gmail.com</a>
             </p>
           </div>
 
@@ -108,7 +122,8 @@
             <div class="value-icon">🚀</div>
             <h3 class="value-name">Innovation</h3>
             <p class="value-description">
-              We celebrate creativity and forward-thinking in all the apps we showcase.
+              We celebrate creativity and forward-thinking in all the apps we
+              showcase.
             </p>
           </div>
 
@@ -116,7 +131,8 @@
             <div class="value-icon">🤝</div>
             <h3 class="value-name">Community</h3>
             <p class="value-description">
-              We foster connections between developers and users to create a thriving ecosystem.
+              We foster connections between developers and users to create a
+              thriving ecosystem.
             </p>
           </div>
 
@@ -124,7 +140,8 @@
             <div class="value-icon">✨</div>
             <h3 class="value-name">Quality</h3>
             <p class="value-description">
-              We curate only the best apps that meet our high standards for design and functionality.
+              We curate only the best apps that meet our high standards for
+              design and functionality.
             </p>
           </div>
 
@@ -132,7 +149,8 @@
             <div class="value-icon">🌱</div>
             <h3 class="value-name">Growth</h3>
             <p class="value-description">
-              We support developers in reaching new audiences and expanding their impact.
+              We support developers in reaching new audiences and expanding
+              their impact.
             </p>
           </div>
         </div>
@@ -145,25 +163,45 @@
         <p class="contact-text">
           有问题或想在我们的平台上展示您的应用程序？我们很乐意收到您的来信！
           <br />
-          Have questions or want to feature your app on our platform? We'd love to hear from you!
+          Have questions or want to feature your app on our platform? We'd love
+          to hear from you!
         </p>
 
         <form class="contact-form" @submit.prevent="handleSubmit">
           <div class="form-group">
             <label for="name" class="form-label">Name</label>
-            <input type="text" id="name" v-model="formData.name" class="form-input" placeholder="Your name" required />
+            <input
+              type="text"
+              id="name"
+              v-model="formData.name"
+              class="form-input"
+              placeholder="Your name"
+              required
+            />
           </div>
 
           <div class="form-group">
             <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" v-model="formData.email" class="form-input" placeholder="Your email"
-              required />
+            <input
+              type="email"
+              id="email"
+              v-model="formData.email"
+              class="form-input"
+              placeholder="Your email"
+              required
+            />
           </div>
 
           <div class="form-group">
             <label for="message" class="form-label">Message</label>
-            <textarea id="message" v-model="formData.message" class="form-textarea" placeholder="Your message" rows="5"
-              required></textarea>
+            <textarea
+              id="message"
+              v-model="formData.message"
+              class="form-textarea"
+              placeholder="Your message"
+              rows="5"
+              required
+            ></textarea>
           </div>
 
           <button type="submit" class="form-submit" :disabled="isSubmitting">
@@ -182,12 +220,13 @@
 <script setup>
 import { ref, reactive } from 'vue';
 // 定义基础URL变量
-const baseUrl = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL ;
+const baseUrl =
+  import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL;
 
 const formData = reactive({
   name: '',
   email: '',
-  message: ''
+  message: '',
 });
 
 const isSubmitting = ref(false);
@@ -208,7 +247,7 @@ const handleSubmit = async () => {
 
     submitStatus.value = {
       type: 'success',
-      message: '邮件客户端已打开，请在邮件客户端中发送邮件。'
+      message: '邮件客户端已打开，请在邮件客户端中发送邮件。',
     };
 
     // 重置表单
@@ -218,7 +257,7 @@ const handleSubmit = async () => {
   } catch (error) {
     submitStatus.value = {
       type: 'error',
-      message: '发送失败，请稍后重试或直接发送邮件至 yihuihuiyi@gmail.com'
+      message: '发送失败，请稍后重试或直接发送邮件至 yihuihuiyi@gmail.com',
     };
   } finally {
     isSubmitting.value = false;
@@ -329,7 +368,9 @@ const handleSubmit = async () => {
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 
 .team-member:hover {
