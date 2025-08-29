@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO优化 -->
+    <title>Brat Generator - Retro Electronic Text Generator | Charli XCX Style</title>
+    <meta name="description"
+        content="Create retro electronic text effects inspired by Charli XCX's Brat aesthetic. Customize text, colors, and effects to create unique visual styles.">
+    <meta name="keywords"
+        content="Brat Generator,retro electronic,text generator,Charli XCX style,neon effects,cyberpunk,text design">
+    <meta name="author" content="AI-PC-Web">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Brat Generator - Retro Electronic Text Generator">
+    <meta property="og:description"
+        content="Create retro electronic text effects inspired by pop music visual aesthetics">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hhui.top/app/brat-generator.html">
+
+    <!-- 图标 -->
+    <link rel="icon" type="image/x-icon" href="./static/brat.webp">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 100px;
+            /* Add padding for floating button */
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a1a 50%, #0a1a0a 100%);
+            z-index: -2;
+        }
+
+        .background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 30%, #ff006620 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, #00ff6620 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, #0066ff20 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 0.7;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+        }
+
+        .main-title {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            background: linear-gradient(45deg, #ff0066, #00ff66, #0066ff, #ff0066);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 0, 102, 0.5);
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            font-weight: 500;
+        }
+
+        .generator-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 10px 40px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 30px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #fff;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        .text-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: #ff0066;
+            box-shadow: 0 0 20px rgba(255, 0, 102, 0.3);
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .control-group {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .color-picker {
+            width: 100%;
+            height: 50px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .font-select {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path fill="%23fff" d="M6 8L0 2h12z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px;
+        }
+
+        .font-select:focus {
+            outline: none;
+            border-color: #ff0066;
+            box-shadow: 0 0 10px rgba(255, 0, 102, 0.3);
+        }
+
+        .font-select option {
+            background: #000;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .slider-container {
+            position: relative;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            outline: none;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #ff0066;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+        }
+
+        .slider-value {
+            position: absolute;
+            right: 0;
+            top: -25px;
+            color: #ff0066;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .style-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .style-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        .style-btn:hover {
+            background: rgba(255, 0, 102, 0.2);
+            border-color: #ff0066;
+        }
+
+        .style-btn.active {
+            background: #ff0066;
+            border-color: #ff0066;
+            box-shadow: 0 0 15px rgba(255, 0, 102, 0.4);
+        }
+
+        .preview-section {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-text {
+            font-size: clamp(2rem, 6vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: #ff0066;
+            text-shadow:
+                0 0 10px currentColor,
+                0 0 20px currentColor,
+                0 0 40px currentColor;
+            transition: all 0.5s ease;
+            word-break: break-word;
+            line-height: 0.9;
+        }
+
+        .download-section {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff0066, #ff3366);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+            box-shadow: 0 5px 20px rgba(255, 0, 102, 0.3);
+            transform: translateY(0);
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(45deg, #ff3366, #ff0066);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 0, 102, 0.4);
+        }
+
+        .presets-section {
+            margin-top: 20px;
+        }
+
+        .preset-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            margin-top: 15px;
+            overflow-x: auto;
+            padding: 5px;
+        }
+
+        .preset-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 110px;
+            flex-shrink: 0;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .preset-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ff0066;
+            transform: translateY(-2px);
+        }
+
+        .preset-preview {
+            font-size: 1.2rem;
+            font-weight: 900;
+            margin-bottom: 0;
+            letter-spacing: -0.02em;
+            flex: 1;
+        }
+
+        .preset-name {
+            font-size: 0.75rem;
+            color: #aaa;
+            letter-spacing: 0.1em;
+            flex-shrink: 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .generator-section {
+                padding: 25px;
+            }
+
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .style-buttons {
+                justify-content: center;
+            }
+
+            .preview-section {
+                padding: 40px 20px;
+                min-height: 200px;
+            }
+
+            .preset-grid {
+                gap: 8px;
+            }
+
+            .preset-card {
+                min-width: 90px;
+                padding: 10px 12px;
+            }
+
+            .preset-preview {
+                font-size: 1rem;
+            }
+
+            .preset-name {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 1200px) and (min-width: 769px) {
+            .controls-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .controls-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Glitch effect styles */
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+
+            0%,
+            100% {
+                transform: translate(0);
+            }
+
+            2% {
+                transform: translate(-2px, 2px);
+            }
+
+            4% {
+                transform: translate(-2px, -2px);
+            }
+
+            6% {
+                transform: translate(2px, 2px);
+            }
+
+            8% {
+                transform: translate(2px, -2px);
+            }
+
+            10% {
+                transform: translate(-2px, 2px);
+            }
+        }
+
+        /* Neon glow styles */
+        .neon {
+            text-shadow:
+                0 0 5px currentColor,
+                0 0 10px currentColor,
+                0 0 15px currentColor,
+                0 0 20px currentColor,
+                0 0 35px currentColor,
+                0 0 40px currentColor;
+        }
+
+        /* Chrome effect */
+        .chrome {
+            background: linear-gradient(45deg, #c0c0c0, #fff, #c0c0c0, #999);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: chromeShine 2s ease-in-out infinite;
+        }
+
+        @keyframes chromeShine {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background"></div>
+
+    <div class="container">
+        <!-- <header class="header">
+            <h1 class="main-title">brat</h1>
+            <p class="subtitle">generator</p>
+        </header> -->
+
+        <section class="preview-section">
+            <div id="preview-text" class="preview-text neon">brat</div>
+        </section>
+
+        <div class="download-section">
+            <button id="download-btn" class="download-btn">
+                <span>📸</span>
+                <span>Download Image</span>
+            </button>
+        </div>
+
+        <section class="presets-section">
+            <div class="generator-section">
+                <h3 class="input-label">Preset Styles</h3>
+                <div class="preset-grid">
+                    <div class="preset-card" data-preset="classic">
+                        <div class="preset-preview" style="color: #8ace00; text-shadow: 0 0 10px #8ace00;">brat</div>
+                        <div class="preset-name">Classic Green</div>
+                    </div>
+                    <div class="preset-card" data-preset="cyber">
+                        <div class="preset-preview" style="color: #00ffff; text-shadow: 0 0 15px #00ffff;">cyber</div>
+                        <div class="preset-name">Cyber Blue</div>
+                    </div>
+                    <div class="preset-card" data-preset="hot">
+                        <div class="preset-preview" style="color: #ff0040; text-shadow: 0 0 20px #ff0040;">hot</div>
+                        <div class="preset-name">Hot Pink</div>
+                    </div>
+                    <div class="preset-card" data-preset="cool">
+                        <div class="preset-preview" style="color: #4040ff; text-shadow: 0 0 15px #4040ff;">cool</div>
+                        <div class="preset-name">Cool Purple</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main class="generator-section">
+            <div class="input-group">
+                <label class="input-label" for="text-input">Enter Text</label>
+                <input type="text" id="text-input" class="text-input" placeholder="type something bratty..."
+                    maxlength="50">
+            </div>
+
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label class="input-label">Background Color</label>
+                    <input type="color" id="background-color" class="color-picker" value="#000000">
+                </div>
+                <div class="control-group">
+                    <label class="input-label">Font Color</label>
+                    <input type="color" id="font-color" class="color-picker" value="#ff0066">
+                </div>
+
+                <div class="control-group">
+                    <label class="input-label">Font Size</label>
+                    <div class="slider-container">
+                        <input type="range" id="font-size" class="slider" min="20" max="120" value="60">
+                        <span class="slider-value">60px</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="input-label">Glow Intensity</label>
+                    <div class="slider-container">
+                        <input type="range" id="glow-intensity" class="slider" min="0" max="100" value="50">
+                        <span class="slider-value">50%</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="input-label">Letter Spacing</label>
+                    <div class="slider-container">
+                        <input type="range" id="letter-spacing" class="slider" min="-5" max="20" value="0">
+                        <span class="slider-value">0px</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="input-label">Text Direction</label>
+                    <select id="text-direction" class="font-select">
+                        <option value="horizontal-lr">Horizontal (Left to Right)</option>
+                        <option value="horizontal-rl">Horizontal (Right to Left)</option>
+                        <option value="vertical-lr">Vertical (Left to Right)</option>
+                        <option value="vertical-rl">Vertical (Right to Left)</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label class="input-label">Background Border Radius</label>
+                    <div class="slider-container">
+                        <input type="range" id="border-radius" class="slider" min="0" max="50" value="20">
+                        <span class="slider-value">20px</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="input-label">Font Family</label>
+                    <select id="font-family" class="font-select">
+                        <option value="Inter">Inter</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Helvetica">Helvetica</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="'Times New Roman'">Times New Roman</option>
+                        <option value="'Courier New'">Courier New</option>
+                        <option value="Impact">Impact</option>
+                        <option value="'Comic Sans MS'">Comic Sans MS</option>
+                        <option value="'Trebuchet MS'">Trebuchet MS</option>
+                        <option value="Verdana">Verdana</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="input-label">Visual Effects</label>
+                <div class="style-buttons">
+                    <button class="style-btn active" data-style="neon">Neon</button>
+                    <button class="style-btn" data-style="glitch">Glitch</button>
+                    <button class="style-btn" data-style="chrome">Chrome</button>
+                    <button class="style-btn" data-style="gradient">Gradient</button>
+                    <button class="style-btn" data-style="outline">Outline</button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-title">Brat Generator</div>
+            <p>&copy; <span id="current-year"></span> - Retro Electronic Text Generator</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 设置当前年份
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // 获取元素
+            const textInput = document.getElementById('text-input');
+            const previewText = document.getElementById('preview-text');
+            const previewSection = document.querySelector('.preview-section');
+            const backgroundColorPicker = document.getElementById('background-color');
+            const fontColorPicker = document.getElementById('font-color');
+            const fontSize = document.getElementById('font-size');
+            const glowIntensity = document.getElementById('glow-intensity');
+            const letterSpacing = document.getElementById('letter-spacing');
+            const textDirection = document.getElementById('text-direction');
+            const borderRadius = document.getElementById('border-radius');
+            const fontFamily = document.getElementById('font-family');
+            const styleButtons = document.querySelectorAll('.style-btn');
+            const presetCards = document.querySelectorAll('.preset-card');
+            const downloadBtn = document.getElementById('download-btn');
+
+            let currentStyle = 'neon';
+            applyPreset('classic')
+
+            // 初始化
+            updatePreview();
+
+            // 文字输入
+            textInput.addEventListener('input', function () {
+                previewText.textContent = this.value || 'brat';
+            });
+
+            // 颜色选择
+            backgroundColorPicker.addEventListener('input', updatePreview);
+            fontColorPicker.addEventListener('input', updatePreview);
+
+            // 新增控制器监听
+            textDirection.addEventListener('change', updatePreview);
+            borderRadius.addEventListener('input', function () {
+                updateSliderValue(this, 'px');
+                updatePreview();
+            });
+            fontFamily.addEventListener('change', updatePreview);
+
+            // 滑块控制
+            fontSize.addEventListener('input', function () {
+                updateSliderValue(this, 'px');
+                updatePreview();
+            });
+
+            glowIntensity.addEventListener('input', function () {
+                updateSliderValue(this, '%');
+                updatePreview();
+            });
+
+            letterSpacing.addEventListener('input', function () {
+                updateSliderValue(this, 'px');
+                updatePreview();
+            });
+
+            // 更新滑块值显示
+            function updateSliderValue(slider, unit) {
+                const valueSpan = slider.parentElement.querySelector('.slider-value');
+                valueSpan.textContent = slider.value + unit;
+            }
+
+            // 样式按钮
+            styleButtons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    styleButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentStyle = this.dataset.style;
+                    updatePreview();
+                });
+            });
+
+            // 预设卡片
+            presetCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    const preset = this.dataset.preset;
+                    applyPreset(preset);
+                });
+            });
+
+            // 应用预设
+            function applyPreset(preset) {
+                const presets = {
+                    classic: { fontColor: '#000000', backgroundColor: '#8ace00', style: 'glitch', size: 80, direction: 'horizontal-lr', radius: 0, font: 'Inter' },
+                    cyber: { fontColor: '#00ffff', backgroundColor: '#0a0a0a', style: 'glitch', size: 70, direction: 'horizontal-lr', radius: 10, font: 'Courier New' },
+                    hot: { fontColor: '#ff0040', backgroundColor: '#1a0a0a', style: 'neon', size: 90, direction: 'horizontal-lr', radius: 25, font: 'Impact' },
+                    cool: { fontColor: '#4040ff', backgroundColor: '#0a0a1a', style: 'chrome', size: 75, direction: 'horizontal-lr', radius: 15, font: 'Arial' }
+                };
+
+                const config = presets[preset];
+                if (config) {
+                    fontColorPicker.value = config.fontColor;
+                    backgroundColorPicker.value = config.backgroundColor;
+                    fontSize.value = config.size;
+                    textDirection.value = config.direction;
+                    borderRadius.value = config.radius;
+                    fontFamily.value = config.font;
+
+                    updateSliderValue(fontSize, 'px');
+                    updateSliderValue(borderRadius, 'px');
+
+                    styleButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.dataset.style === config.style) {
+                            btn.classList.add('active');
+                            currentStyle = config.style;
+                        }
+                    });
+
+                    updatePreview();
+                }
+            }
+
+            // 更新预览
+            function updatePreview() {
+                const fontColor = fontColorPicker.value;
+                const backgroundColor = backgroundColorPicker.value;
+                const size = fontSize.value;
+                const glow = glowIntensity.value;
+                const spacing = letterSpacing.value;
+                const direction = textDirection.value;
+                const radius = borderRadius.value;
+                const font = fontFamily.value;
+
+                // 设置背景色和圆角
+                previewSection.style.backgroundColor = backgroundColor;
+                previewSection.style.borderRadius = radius + 'px';
+
+                // 移除所有样式类
+                previewText.className = 'preview-text';
+
+                // 基础样式
+                previewText.style.fontSize = size + 'px';
+                previewText.style.letterSpacing = spacing + 'px';
+                previewText.style.color = fontColor;
+                previewText.style.fontFamily = font;
+
+                // 设置文字方向
+                if (direction === 'horizontal-lr') {
+                    previewText.style.writingMode = 'horizontal-tb';
+                    previewText.style.direction = 'ltr';
+                } else if (direction === 'horizontal-rl') {
+                    previewText.style.writingMode = 'horizontal-tb';
+                    previewText.style.direction = 'rtl';
+                } else if (direction === 'vertical-lr') {
+                    previewText.style.writingMode = 'vertical-lr';
+                    previewText.style.direction = 'ltr';
+                } else if (direction === 'vertical-rl') {
+                    previewText.style.writingMode = 'vertical-rl';
+                    previewText.style.direction = 'rtl';
+                }
+
+                // 应用特效
+                switch (currentStyle) {
+                    case 'neon':
+                        previewText.classList.add('neon');
+                        previewText.style.textShadow = `
+                            0 0 ${glow * 0.1}px ${fontColor},
+                            0 0 ${glow * 0.2}px ${fontColor},
+                            0 0 ${glow * 0.3}px ${fontColor},
+                            0 0 ${glow * 0.4}px ${fontColor},
+                            0 0 ${glow * 0.7}px ${fontColor},
+                            0 0 ${glow * 0.8}px ${fontColor}
+                        `;
+                        break;
+                    case 'glitch':
+                        previewText.classList.add('glitch');
+                        previewText.style.textShadow = `
+                            ${glow * 0.05}px 0 0 #ff0040,
+                            -${glow * 0.05}px 0 0 #00ff40,
+                            0 0 ${glow * 0.3}px ${fontColor}
+                        `;
+                        break;
+                    case 'chrome':
+                        previewText.classList.add('chrome');
+                        previewText.style.textShadow = `
+                            0 1px 0 #ccc,
+                            0 2px 0 #c9c9c9,
+                            0 3px 0 #bbb,
+                            0 4px 0 #b9b9b9,
+                            0 5px 0 #aaa,
+                            0 6px 1px rgba(0,0,0,.1),
+                            0 0 ${glow * 0.5}px rgba(0,0,0,.1)
+                        `;
+                        break;
+                    case 'gradient':
+                        previewText.style.background = `linear-gradient(45deg, ${fontColor}, #fff, ${fontColor})`;
+                        previewText.style.backgroundSize = '400% 400%';
+                        previewText.style.webkitBackgroundClip = 'text';
+                        previewText.style.webkitTextFillColor = 'transparent';
+                        previewText.style.backgroundClip = 'text';
+                        previewText.style.animation = 'gradientShift 2s ease-in-out infinite';
+                        break;
+                    case 'outline':
+                        previewText.style.color = 'transparent';
+                        previewText.style.webkitTextStroke = `2px ${fontColor}`;
+                        previewText.style.textShadow = `
+                            0 0 ${glow * 0.3}px ${fontColor},
+                            0 0 ${glow * 0.6}px ${fontColor}
+                        `;
+                        break;
+                }
+            }
+
+            // 下载功能
+            downloadBtn.addEventListener('click', function () {
+                const previewSection = document.querySelector('.preview-section');
+                const rect = previewSection.getBoundingClientRect();
+
+                html2canvas(previewSection, {
+                    backgroundColor: null,
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: false,
+                    width: rect.width,
+                    height: rect.height,
+                    scrollX: 0,
+                    scrollY: 0,
+                    windowWidth: window.innerWidth,
+                    windowHeight: window.innerHeight
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'brat-text.png';
+                    link.href = canvas.toDataURL('image/png', 1.0);
+                    link.click();
+                });
+            });
+
+            // 初始化滑块值显示
+            updateSliderValue(fontSize, 'px');
+            updateSliderValue(glowIntensity, '%');
+            updateSliderValue(letterSpacing, 'px');
+            updateSliderValue(borderRadius, 'px');
+        });
+    </script>
+
+    <!-- html2canvas for download functionality -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+
+</html>

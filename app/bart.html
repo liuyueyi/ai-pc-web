@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO优化 -->
+    <title>BART Generator - AI文本生成工具 | 智能文本摘要和生成</title>
+    <meta name="description" content="基于BART模型的AI文本生成器，支持文本摘要、续写、改写等功能。免费在线使用，支持中英文文本处理。">
+    <meta name="keywords" content="BART,AI文本生成,文本摘要,智能写作,文本改写,AI工具,自然语言处理">
+    <meta name="author" content="AI-PC-Web">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="BART Generator - AI文本生成工具">
+    <meta property="og:description" content="基于BART模型的智能文本生成器，支持文本摘要、续写、改写等功能">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://app.ppai.top/app/bart.html">
+    
+    <!-- 图标 -->
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .task-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .task-btn {
+            padding: 12px 24px;
+            border: 2px solid #4f46e5;
+            background: white;
+            color: #4f46e5;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+            min-width: 120px;
+        }
+
+        .task-btn:hover {
+            background: #f3f4f6;
+            transform: translateY(-2px);
+        }
+
+        .task-btn.active {
+            background: #4f46e5;
+            color: white;
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .input-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            resize: vertical;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .input-textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .settings-section {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .setting-item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .setting-item label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #6b7280;
+        }
+
+        .setting-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .setting-input:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 30px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
+        }
+
+        .generate-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .output-section {
+            border-top: 2px solid #f3f4f6;
+            padding-top: 30px;
+        }
+
+        .output-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .output-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .copy-btn {
+            padding: 8px 16px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #059669;
+        }
+
+        .output-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            background: #f9fafb;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #4f46e5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .examples {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .examples h3 {
+            margin-bottom: 15px;
+            color: #374151;
+        }
+
+        .example-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid #4f46e5;
+        }
+
+        .example-item:hover {
+            background: #f3f4f6;
+            transform: translateX(5px);
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            color: #6b7280;
+            background: #f9fafb;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .task-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .task-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .settings-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <h1>🤖 BART Generator</h1>
+            <p>基于BART模型的智能文本生成工具，支持摘要、续写、改写等多种功能</p>
+        </header>
+
+        <div class="main-content">
+            <!-- 任务选择器 -->
+            <section class="task-selector">
+                <button class="task-btn active" data-task="summarize">文本摘要</button>
+                <button class="task-btn" data-task="continue">文本续写</button>
+                <button class="task-btn" data-task="rewrite">文本改写</button>
+                <button class="task-btn" data-task="translate">文本翻译</button>
+                <button class="task-btn" data-task="qa">问答生成</button>
+            </section>
+
+            <!-- 输入区域 -->
+            <section class="input-section">
+                <div class="input-group">
+                    <label for="input-text">输入文本:</label>
+                    <textarea 
+                        id="input-text" 
+                        class="input-textarea" 
+                        placeholder="请输入您要处理的文本..."
+                        maxlength="2000"
+                    ></textarea>
+                    <small style="color: #6b7280; margin-top: 5px; display: block;">
+                        字符数: <span id="char-count">0</span>/2000
+                    </small>
+                </div>
+            </section>
+
+            <!-- 设置区域 -->
+            <section class="settings-section">
+                <div class="setting-item">
+                    <label for="max-length">最大长度:</label>
+                    <input type="number" id="max-length" class="setting-input" value="150" min="50" max="500">
+                </div>
+                <div class="setting-item">
+                    <label for="temperature">创意度:</label>
+                    <input type="range" id="temperature" class="setting-input" value="0.7" min="0.1" max="1.0" step="0.1">
+                    <small style="color: #6b7280;">当前值: <span id="temp-value">0.7</span></small>
+                </div>
+                <div class="setting-item">
+                    <label for="language">语言:</label>
+                    <select id="language" class="setting-input">
+                        <option value="zh">中文</option>
+                        <option value="en">English</option>
+                        <option value="auto">自动检测</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- 生成按钮 -->
+            <button id="generate-btn" class="generate-btn">
+                🚀 开始生成
+            </button>
+
+            <!-- 加载状态 -->
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>AI正在处理您的文本，请稍候...</p>
+            </div>
+
+            <!-- 输出区域 -->
+            <section class="output-section">
+                <div class="output-header">
+                    <h3 class="output-title">生成结果:</h3>
+                    <button id="copy-btn" class="copy-btn">📋 复制结果</button>
+                </div>
+                <textarea 
+                    id="output-text" 
+                    class="output-textarea" 
+                    placeholder="生成的结果将显示在这里..."
+                    readonly
+                ></textarea>
+            </section>
+
+            <!-- 示例区域 -->
+            <section class="examples">
+                <h3>💡 使用示例:</h3>
+                <div class="example-item" data-example="summarize">
+                    <strong>文本摘要:</strong> 将长篇文章压缩为简洁的摘要
+                </div>
+                <div class="example-item" data-example="continue">
+                    <strong>文本续写:</strong> 基于给定开头，续写后续内容
+                </div>
+                <div class="example-item" data-example="rewrite">
+                    <strong>文本改写:</strong> 用不同的表达方式重写原文
+                </div>
+                <div class="example-item" data-example="translate">
+                    <strong>文本翻译:</strong> 在中英文之间进行翻译
+                </div>
+                <div class="example-item" data-example="qa">
+                    <strong>问答生成:</strong> 基于文本生成问题和答案
+                </div>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <p>🤖 BART Generator &copy; <span id="current-year"></span> - 由AI技术驱动</p>
+            <p><small>本工具基于BART模型，提供智能文本处理服务</small></p>
+        </footer>
+    </main>
+
+    <script>
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 设置当前年份
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // 获取DOM元素
+            const taskBtns = document.querySelectorAll('.task-btn');
+            const inputText = document.getElementById('input-text');
+            const outputText = document.getElementById('output-text');
+            const generateBtn = document.getElementById('generate-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            const charCount = document.getElementById('char-count');
+            const tempSlider = document.getElementById('temperature');
+            const tempValue = document.getElementById('temp-value');
+            const loading = document.getElementById('loading');
+            const exampleItems = document.querySelectorAll('.example-item');
+            
+            let currentTask = 'summarize';
+            
+            // 任务切换
+            taskBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    taskBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentTask = this.dataset.task;
+                    updatePlaceholder();
+                });
+            });
+            
+            // 更新占位符
+            function updatePlaceholder() {
+                const placeholders = {
+                    summarize: '请输入需要摘要的长文本...',
+                    continue: '请输入需要续写的文本开头...',
+                    rewrite: '请输入需要改写的文本...',
+                    translate: '请输入需要翻译的文本...',
+                    qa: '请输入文本，系统将生成相关问答...'
+                };
+                inputText.placeholder = placeholders[currentTask] || '请输入您要处理的文本...';
+            }
+            
+            // 字符计数
+            inputText.addEventListener('input', function() {
+                charCount.textContent = this.value.length;
+            });
+            
+            // 温度滑块
+            tempSlider.addEventListener('input', function() {
+                tempValue.textContent = this.value;
+            });
+            
+            // 示例点击
+            exampleItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const task = this.dataset.example;
+                    const examples = {
+                        summarize: '人工智能（Artificial Intelligence，简称AI）是计算机科学的一个分支，它企图了解智能的实质，并生产出一种新的能以人类智能相似的方式做出反应的智能机器。该领域的研究包括机器人、语言识别、图像识别、自然语言处理和专家系统等。人工智能从诞生以来，理论和技术日益成熟，应用领域也不断扩大。可以设想，未来人工智能带来的科技产品，将会是人类智慧的"容器"。',
+                        continue: '在一个宁静的小镇上，住着一位神秘的老人。每天黄昏时分，他都会坐在门前的摇椅上，望着远方的山峦。今天，一个陌生的年轻人来到了他的面前...',
+                        rewrite: '今天天气很好，阳光明媚，我决定去公园散步。公园里有很多人在锻炼，还有小朋友在玩耍，整个公园充满了生机和活力。',
+                        translate: 'The rapid development of artificial intelligence has transformed many industries and changed the way we live and work.',
+                        qa: '机器学习是人工智能的一个重要分支，它使计算机能够通过经验自动改进。机器学习算法构建数学模型，根据训练数据进行预测或决策，而无需明确编程来执行任务。'
+                    };
+                    
+                    if (examples[task]) {
+                        // 切换到对应任务
+                        taskBtns.forEach(btn => {
+                            btn.classList.remove('active');
+                            if (btn.dataset.task === task) {
+                                btn.classList.add('active');
+                            }
+                        });
+                        currentTask = task;
+                        updatePlaceholder();
+                        
+                        // 设置示例文本
+                        inputText.value = examples[task];
+                        charCount.textContent = inputText.value.length;
+                    }
+                });
+            });
+            
+            // 生成按钮
+            generateBtn.addEventListener('click', function() {
+                const text = inputText.value.trim();
+                if (!text) {
+                    alert('请输入要处理的文本');
+                    return;
+                }
+                
+                generateText(text);
+            });
+            
+            // 复制按钮
+            copyBtn.addEventListener('click', function() {
+                if (outputText.value.trim()) {
+                    outputText.select();
+                    document.execCommand('copy');
+                    
+                    // 显示复制成功提示
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = '✅ 已复制';
+                    copyBtn.style.background = '#059669';
+                    
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                        copyBtn.style.background = '#10b981';
+                    }, 2000);
+                } else {
+                    alert('没有可复制的内容');
+                }
+            });
+            
+            // 模拟文本生成
+            function generateText(inputText) {
+                generateBtn.disabled = true;
+                generateBtn.textContent = '生成中...';
+                loading.style.display = 'block';
+                outputText.value = '';
+                
+                // 模拟API调用延迟
+                setTimeout(() => {
+                    const result = simulateGeneration(inputText, currentTask);
+                    
+                    // 模拟打字效果
+                    typeWriter(result, outputText, () => {
+                        generateBtn.disabled = false;
+                        generateBtn.textContent = '🚀 开始生成';
+                        loading.style.display = 'none';
+                    });
+                }, 1500);
+            }
+            
+            // 打字机效果
+            function typeWriter(text, element, callback) {
+                element.value = '';
+                let i = 0;
+                const timer = setInterval(() => {
+                    if (i < text.length) {
+                        element.value += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(timer);
+                        if (callback) callback();
+                    }
+                }, 30);
+            }
+            
+            // 模拟生成结果
+            function simulateGeneration(text, task) {
+                const templates = {
+                    summarize: generateSummary(text),
+                    continue: generateContinuation(text),
+                    rewrite: generateRewrite(text),
+                    translate: generateTranslation(text),
+                    qa: generateQA(text)
+                };
+                
+                return templates[task] || '生成完成！这是一个示例结果。';
+            }
+            
+            function generateSummary(text) {
+                if (text.length > 100) {
+                    const firstSentence = text.split('。')[0] + '。';
+                    return `摘要：${firstSentence}\n\n关键要点：\n• 主要内容概述\n• 核心观点提炼\n• 重要信息总结`;
+                }
+                return '文本摘要：' + text.substring(0, 50) + '...（内容已精简）';
+            }
+            
+            function generateContinuation(text) {
+                const continuations = [
+                    '随着故事的发展，主人公面临了前所未有的挑战...',
+                    '在这关键时刻，一个意想不到的转折出现了...',
+                    '经过深思熟虑，他决定采取一个大胆的行动...',
+                    '然而，事情并没有按照预期的方向发展...'
+                ];
+                return text + '\n\n' + continuations[Math.floor(Math.random() * continuations.length)];
+            }
+            
+            function generateRewrite(text) {
+                return `原文改写版本：\n\n${text.replace(/很/g, '非常').replace(/好/g, '优秀').replace(/不错/g, '出色')}\n\n（注：这是一个简化的改写示例，实际的BART模型会提供更智能的改写效果）`;
+            }
+            
+            function generateTranslation(text) {
+                // 简单的中英文检测和模拟翻译
+                const isChinese = /[\u4e00-\u9fa5]/.test(text);
+                if (isChinese) {
+                    return `English Translation:\n\nThis is a simulated English translation of the Chinese text. In a real implementation, BART would provide accurate translation results.`;
+                } else {
+                    return `中文翻译：\n\n这是对英文文本的模拟中文翻译。在实际实现中，BART模型会提供准确的翻译结果。`;
+                }
+            }
+            
+            function generateQA(text) {
+                return `基于文本生成的问答：\n\n问题1：文本的主要内容是什么？\n答案1：文本主要讨论了相关主题的核心要点。\n\n问题2：有哪些关键信息值得关注？\n答案2：重要的关键信息包括主要观点和核心内容。\n\n问题3：从文本中可以得出什么结论？\n答案3：通过分析可以得出相关的有价值结论。`;
+            }
+            
+            // 初始化占位符
+            updatePlaceholder();
+        });
+    </script>
+</body>
+</html>
