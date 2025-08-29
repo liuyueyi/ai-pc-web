@@ -1,0 +1,959 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 新增SEO元标签 -->
+    <meta
+      name="description"
+      content="免费在线图片线稿提取工具，支持拖拽上传、粘贴图片或文件选择三种方式，快速提取高质量线稿，本地处理保护隐私。"
+    />
+    <meta
+      name="keywords"
+      content="图片线稿提取, 线稿生成, 图片处理, 免费工具, 本地处理"
+    />
+    <meta name="author" content="图片线稿提取器团队" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="图片线稿提取器 - 免费在线工具" />
+    <meta
+      property="og:description"
+      content="免费在线图片线稿提取工具，支持拖拽上传、粘贴图片或文件选择三种方式，快速提取高质量线稿，本地处理保护隐私。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ai.hhui.top/webapp/imgline.html" />
+    <meta
+      property="og:image"
+      content="https://ai.hhui.top/static/webapp/linedraw.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="图片线稿提取器 - 免费在线工具" />
+    <meta
+      name="twitter:description"
+      content="免费在线图片线稿提取工具，支持拖拽上传、粘贴图片或文件选择三种方式，快速提取高质量线稿，本地处理保护隐私。"
+    />
+    <meta
+      name="twitter:image"
+      content="https://ai.hhui.top/static/webapp/linedraw.jpg"
+    />
+
+    <title>图片线稿提取器 - 免费在线工具 | 支持三种上传方式</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 新增网站图标 -->
+    <link
+      rel="icon"
+      href=" https://ai.hhui.top/static/webapp/linedraw.jpg"
+      type="image/x-icon"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://ai.hhui.top/static/webapp/linedraw.jpg"
+      type="image/x-icon"
+    />
+    <script
+      async
+      custom-element="amp-ad"
+      src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="./css/global.css" />
+    <link rel="stylesheet" type="text/css" href="./css/imgline.css" />
+    <style></style>
+  </head>
+
+  <body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="#" class="navbar-logo">
+          <img
+            src="https://ai.hhui.top/logo.webp"
+            style="height: 2.2rem; width: 5rem"
+          />
+        </a>
+
+        <!-- 桌面端导航菜单 -->
+        <ul class="navbar-menu" id="navbar-menu">
+          <li class="navbar-item">
+            <a href="https://ai.hhui.top" target="_blank" class="navbar-link"
+              >主页</a
+            >
+          </li>
+          <li class="navbar-item">
+            <a
+              href="https://ai.hhui.top/webapp"
+              target="_blank"
+              class="navbar-link"
+              >WebApp</a
+            >
+          </li>
+          <li class="navbar-item">
+            <a href="#" class="navbar-link active">图片处理工具</a>
+          </li>
+        </ul>
+
+        <!-- 移动端菜单按钮 -->
+        <button class="navbar-toggle" id="navbar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 侧边悬浮导航栏 -->
+    <div class="sidebar">
+      <div class="sidebar-item" data-tool="bg-remover">
+        <i class="fas fa-magic"></i>
+        <a href="rmBg.html">
+          <div class="sidebar-tooltip">背景去除</div>
+        </a>
+      </div>
+      <div class="sidebar-item active" data-tool="image-resize">
+        <i class="fas fa-expand-arrows-alt"></i>
+        <a href="#">
+          <div class="sidebar-tooltip">线稿提取</div>
+        </a>
+      </div>
+      <div class="sidebar-item" data-tool="image-compress">
+        <i class="fas fa-file-archive"></i>
+        <a href="#recommend-tools">
+          <div class="sidebar-tooltip">相关工具</div>
+        </a>
+      </div>
+      <!-- 
+        <div class="sidebar-item" data-tool="image-format">
+            <i class="fas fa-file-image"></i>
+            <div class="sidebar-tooltip">格式转换</div>
+        </div>
+        <div class="sidebar-item" data-tool="image-crop">
+            <i class="fas fa-crop"></i>
+            <div class="sidebar-tooltip">图片裁剪</div>
+        </div>
+        <div class="sidebar-item" data-tool="image-filter">
+            <i class="fas fa-filter"></i>
+            <div class="sidebar-tooltip">滤镜效果</div>
+        </div> -->
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-item sidebar-config" id="sidebar-config-btn">
+        <i class="fas"> 灰 </i>
+        <div class="sidebar-tooltip">一灰灰的工具站点</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <header>
+        <h1><i class="fas fa-pencil-alt"></i> 线稿提取器</h1>
+        <p class="subtitle">
+          集成粘贴图片、拖拽上传和文件选择三种方式 | 本地离线线稿快速提取器
+        </p>
+      </header>
+
+      <!-- 集成上传区域 -->
+      <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">
+          <i class="fas fa-cloud-upload-alt"></i>
+        </div>
+        <h2 class="upload-text">上传图片提取线稿</h2>
+        <p class="upload-instructions">
+          支持三种方式：<span
+            ><i class="fas fa-mouse-pointer"></i> 点击上传</span
+          >
+          <span><i class="fas fa-arrows-alt"></i> 拖拽图片</span>
+          <span><i class="fas fa-paste"></i> Ctrl+V 粘贴</span>
+        </p>
+        <button class="upload-btn" id="uploadButton">
+          <i class="fas fa-folder-open"></i> 选择图片
+        </button>
+        <input
+          type="file"
+          id="fileInput"
+          accept="image/*"
+          style="display: none"
+        />
+      </div>
+
+      <!-- 图片对比区域 -->
+      <div class="comparison-area">
+        <div class="image-container">
+          <h3>
+            <i class="fas fa-image"></i> 原始图片
+            <!-- 新增清除按钮 -->
+            <button class="clear-btn" id="clearButton">
+              <i class="fas fa-times-circle"></i> 清除
+            </button>
+            <button class="demo-btn" id="demoButton">
+              <i class="fas fa-lightbulb"></i> 使用示例图片
+            </button>
+          </h3>
+          <div class="image-preview" id="originalPreview">
+            <div class="placeholder" id="originalPlaceholder">
+              <i class="fas fa-file-image"></i>
+              <p>原始图片将显示在这里</p>
+            </div>
+            <img
+              src=""
+              alt="原始图片"
+              id="originalImage"
+              crossorigin="Anonymous"
+            />
+          </div>
+        </div>
+
+        <div class="image-container">
+          <h3><i class="fas fa-paint-brush"></i> 处理结果</h3>
+          <div class="image-preview" id="processedPreview">
+            <div class="placeholder" id="processedPlaceholder">
+              <i class="fas fa-magic"></i>
+              <p>处理后的图片将显示在这里</p>
+            </div>
+            <img src="" alt="处理后的图片" id="processedImage" />
+            <img
+              src=""
+              alt="过渡图片"
+              id="transitionImage"
+              style="position: absolute; top: 20px; left: 20px; opacity: 0"
+            />
+
+            <!-- 新增处理动画元素 -->
+            <div class="processing-container" id="processingContainer">
+              <div class="processing-spinner"></div>
+              <div class="processing-text">处理中...</div>
+            </div>
+            <div class="scan-overlay" id="scanOverlay"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 控制按钮 -->
+      <div class="controls">
+        <button class="control-btn process-btn" id="processButton" disabled>
+          <i class="fas fa-bolt"></i> 提取线稿
+        </button>
+        <button class="control-btn gray-btn" id="pencilSketchButton" disabled>
+          <i class="fas fa-pencil-ruler"></i> 转为底片图
+        </button>
+        <button
+          class="control-btn white-black-btn"
+          id="blackWhiteButton"
+          disabled
+        >
+          <i class="fas fa-adjust"></i> 转为黑白图
+        </button>
+        <button class="control-btn download-btn" id="downloadButton" disabled>
+          <i class="fas fa-download"></i> 下载处理结果
+        </button>
+      </div>
+
+      <!-- SEO优化 - FAQ部分 -->
+      <div class="faq-section">
+        <h2 class="section-title">
+          <i class="fas fa-question-circle"></i>
+          常见问题
+        </h2>
+        <div class="faq-item">
+          <div class="faq-question">这个工具是如何工作的？</div>
+          <div class="faq-answer">
+            这个工具使用本地离线算法对当前图片进行线稿提取，适用于二次元卡通图片的线稿抽取。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">支持哪些图片格式？</div>
+          <div class="faq-answer">
+            我们支持JPG、PNG、WEBP等常见图片格式，文件大小最大支持10MB。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">处理后的图片质量如何？</div>
+          <div class="faq-answer">
+            高效快速的实现线稿抽取，针对二次元、卡通类型的图片，有非常好的提取效果
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">我的图片会被保存吗？</div>
+          <div class="faq-answer">
+            我们不会保存您上传的原始图片和处理后的结果。所有图片仅在您的浏览器中处理，处理完成后不会在服务器上保留。
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO优化 - 功能介绍卡片 -->
+      <div class="features-section">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div class="feature-title">快速处理</div>
+          <p>利用先进的算法，秒级完成线稿提取，无需漫长等待。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-magic"></i>
+          </div>
+          <div class="feature-title">高精度</div>
+          <p>智能识别主体与背景，高精度实现主体的线稿抽取。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="feature-title">隐私保护</div>
+          <p>所有图片处理均在本地完成，不会上传到服务器，确保您的隐私安全。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <div class="feature-title">多平台支持</div>
+          <p>完全基于浏览器运行，无需安装任何软件，支持桌面和移动设备。</p>
+        </div>
+      </div>
+      <!-- SEO优化 - 相关工具链接 -->
+      <div class="related-tools" id="recommend-tools">
+        <h3>相关工具</h3>
+        <ul>
+          <li><a href="https://ai.hhui.top/app/rmBg.html">智能抠图</a></li>
+          <li>
+            <a href="https://tool.hhui.top/tools/image/cut/" target="_blank"
+              >图片编辑(翻转/裁剪/旋转)</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://tool.hhui.top/tools/image/imagePatina/"
+              target="_blank"
+              >图片包浆</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://tool.hhui.top/tools/image/gifSplitter/"
+              target="_blank"
+              >GIF图片分解</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://tool.hhui.top/tools/image/jiugongge/"
+              target="_blank"
+              >九宫格切图</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- 新增版权区域 -->
+      <footer>
+        <amp-ad
+          width="100vw"
+          height="320"
+          type="adsense"
+          data-ad-client="ca-pub-5592000528061748"
+          data-ad-slot="2259877961"
+          data-auto-format="rspv"
+          data-full-width=""
+        >
+          <div overflow=""></div>
+        </amp-ad>
+        <div class="footer-links">
+          <a href="https://ai.hhui.top/about" target="_blank">关于我们</a>
+          <a href="mailto:yihuihuiyi@gmail.com" target="_blank">联系我们</a>
+        </div>
+        <div class="copyright">&copy; 2025 图片线稿提取器 | 保留所有权利</div>
+      </footer>
+    </div>
+
+    <!-- 错误提示 -->
+    <div class="error-overlay" id="errorOverlay">
+      <div class="error-content">
+        <div class="error-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h2>上传错误</h2>
+        <p>请选择有效的图片文件 (JPG, PNG, GIF)</p>
+        <button class="retry-btn" id="retryButton">重新上传</button>
+      </div>
+    </div>
+
+    <!-- 新增图片预览弹窗 -->
+    <div class="preview-overlay" id="previewOverlay">
+      <div class="preview-container">
+        <img src="" alt="预览图片" class="preview-image" id="previewImage" />
+        <div class="preview-controls">
+          <button class="preview-control-btn" id="zoomInButton">放大</button>
+          <button class="preview-control-btn" id="zoomOutButton">缩小</button>
+          <button class="preview-control-btn" id="closePreviewButton">
+            关闭
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 计算方法
+      const [max, min] = [Math.max, Math.min];
+      // 获取DOM元素
+      const uploadArea = document.getElementById('uploadArea');
+      const uploadButton = document.getElementById('uploadButton');
+      const fileInput = document.getElementById('fileInput');
+      const originalImage = document.getElementById('originalImage');
+      const processedImage = document.getElementById('processedImage');
+      const processButton = document.getElementById('processButton');
+      const downloadButton = document.getElementById('downloadButton');
+      const errorOverlay = document.getElementById('errorOverlay');
+      const retryButton = document.getElementById('retryButton');
+      const originalPlaceholder = document.getElementById(
+        'originalPlaceholder'
+      );
+      const processedPlaceholder = document.getElementById(
+        'processedPlaceholder'
+      );
+      const transitionImage = document.getElementById('transitionImage');
+
+      // 新增处理动画相关元素
+      const processingContainer = document.getElementById(
+        'processingContainer'
+      );
+      const scanOverlay = document.getElementById('scanOverlay');
+      const processedPreview = document.getElementById('processedPreview');
+
+      // 新增清除按钮
+      const clearButton = document.getElementById('clearButton');
+      const demoButton = document.getElementById('demoButton');
+
+      // 新增铅笔素描和黑白图按钮
+      const pencilSketchButton = document.getElementById('pencilSketchButton');
+      const blackWhiteButton = document.getElementById('blackWhiteButton');
+
+      // 新增图片预览相关元素
+      const previewOverlay = document.getElementById('previewOverlay');
+      const previewImage = document.getElementById('previewImage');
+      const zoomInButton = document.getElementById('zoomInButton');
+      const zoomOutButton = document.getElementById('zoomOutButton');
+      const closePreviewButton = document.getElementById('closePreviewButton');
+
+      // 导航栏元素
+      const navbarToggle = document.getElementById('navbar-toggle');
+      const navbarMenu = document.getElementById('navbar-menu');
+      const navbarLinks = document.querySelectorAll('.navbar-link');
+
+      // 导航栏菜单切换
+      navbarToggle.addEventListener('click', function () {
+        navbarMenu.classList.toggle('active');
+      });
+
+      // 初始化变量
+      let originalImageData = null;
+      let processedImageData = null;
+      let processingAnimationId = null;
+      let scale = 1; // 图片缩放比例
+
+      // 上传按钮点击事件
+      uploadButton.addEventListener('click', () => {
+        fileInput.click();
+      });
+
+      // 文件选择事件
+      fileInput.addEventListener('change', e => {
+        if (fileInput.files.length > 0) {
+          loadImageFromFile(fileInput.files[0]);
+        }
+      });
+
+      // 拖拽上传事件
+      uploadArea.addEventListener('dragover', e => {
+        e.preventDefault();
+        uploadArea.classList.add('active');
+      });
+
+      uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('active');
+      });
+
+      uploadArea.addEventListener('drop', e => {
+        e.preventDefault();
+        uploadArea.classList.remove('active');
+
+        const files = e.dataTransfer.files;
+        if (files.length > 0 && files[0].type.match('image.*')) {
+          loadImageFromFile(files[0]);
+        } else {
+          showError();
+        }
+      });
+
+      // 粘贴图片事件
+      document.addEventListener('paste', e => {
+        const items = e.clipboardData.items;
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].type.indexOf('image') !== -1) {
+            const blob = items[i].getAsFile();
+            loadImageFromBlob(blob);
+            // 添加粘贴反馈效果
+            uploadArea.classList.add('active');
+            setTimeout(() => {
+              uploadArea.classList.remove('active');
+            }, 1000);
+            break;
+          }
+        }
+      });
+
+      // 加载图片函数
+      function loadImageFromFile(file) {
+        if (!file.type.match('image.*')) {
+          showError();
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = e => {
+          displayOriginalImage(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function loadImageFromBlob(blob) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          displayOriginalImage(e.target.result);
+        };
+        reader.readAsDataURL(blob);
+      }
+
+      function displayOriginalImage(src) {
+        originalImage.src = src;
+        originalImage.setAttribute('crossOrigin', '');
+        originalImage.onload = () => {
+          // 显示原始图片
+          originalPlaceholder.style.display = 'none';
+          originalImage.style.display = 'block';
+
+          // 重置处理结果
+          processedPlaceholder.style.display = 'block';
+          processedImage.style.display = 'none';
+          processedImage.src = '';
+
+          // 启用处理按钮
+          processButton.disabled = false;
+          downloadButton.disabled = true;
+          pencilSketchButton.disabled = false;
+          blackWhiteButton.disabled = false;
+
+          // 存储原始图片数据
+          originalImageData = src;
+
+          // 缩小上传区域
+          uploadArea.classList.add('uploaded');
+
+          // 修改上传按钮文本
+          uploadButton.innerHTML = '<i class="fas fa-refresh"></i> 更换图片';
+
+          // 显示清除按钮
+          clearButton.style.display = 'inline-block';
+        };
+      }
+
+      demoButton.addEventListener('click', () => {
+        // 加载示例图片
+        console.log('加载图片');
+        const demoImg = 'https://ai.hhui.top/app/static/lineDemo.webp';
+        displayOriginalImage(demoImg);
+      });
+
+      // 清除按钮事件
+      clearButton.addEventListener('click', () => {
+        // 隐藏原始图片
+        originalImage.style.display = 'none';
+        originalImage.src = '';
+
+        // 显示占位符
+        originalPlaceholder.style.display = 'block';
+
+        // 重置处理结果
+        processedPlaceholder.style.display = 'block';
+        processedImage.style.display = 'none';
+        processedImage.src = '';
+
+        // 禁用处理和下载按钮
+        processButton.disabled = true;
+        downloadButton.disabled = true;
+        pencilSketchButton.disabled = true;
+        blackWhiteButton.disabled = true;
+
+        // 清空原始图片数据
+        originalImageData = null;
+
+        // 恢复上传区域
+        uploadArea.classList.remove('uploaded');
+
+        // 修改上传按钮文本
+        uploadButton.innerHTML = '<i class="fas fa-folder-open"></i> 选择图片';
+
+        // 隐藏清除按钮
+        clearButton.style.display = 'none';
+
+        // 重置文件输入
+        fileInput.value = '';
+      });
+
+      // 处理按钮事件
+      processButton.addEventListener('click', () => {
+        if (!originalImage.src) return;
+
+        // 禁用按钮防止重复点击
+        processButton.disabled = true;
+
+        // 显示处理动画
+        processedPreview.classList.add('loading');
+        processingContainer.classList.add('active');
+        scanOverlay.style.display = 'block';
+
+        // 显示过渡图片
+        transitionImage.src = originalImage.src;
+        transitionImage.style.opacity = 1;
+
+        // 模拟处理延迟
+        setTimeout(() => {
+          processImage();
+
+          // 开始过渡动画
+          const animationDuration = 1500;
+          const startTime = performance.now();
+          const animate = currentTime => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / animationDuration, 1);
+            transitionImage.style.opacity = 1 - progress;
+
+            if (elapsed < animationDuration) {
+              processingAnimationId = requestAnimationFrame(animate);
+            } else {
+              // 完成处理动画
+              processedPreview.classList.remove('loading');
+              processingContainer.classList.remove('active');
+              scanOverlay.style.display = 'none';
+
+              // 显示处理结果
+              processedPlaceholder.style.display = 'none';
+              processedImage.style.display = 'block';
+              transitionImage.style.opacity = 0;
+
+              // 添加结果出现动画
+              processedImage.style.animation = 'fadeIn 0.5s ease forwards';
+
+              // 启用下载按钮
+              downloadButton.disabled = false;
+              processButton.disabled = false;
+            }
+          };
+          processingAnimationId = requestAnimationFrame(animate);
+        }, 100);
+      });
+
+      // 图片处理函数（简化版）
+      function processImage() {
+        // 创建画布
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+        img.src = originalImage.src;
+        img.crossOrigin = 'Anonymous';
+
+        img.onload = () => {
+          const cw = (canvas.width = img.width);
+          const ch = (canvas.height = img.height);
+          // 绘制原始图片
+          ctx.drawImage(img, 0, 0);
+
+          // 获取图像数据
+          const imdata = ctx.getImageData(0, 0, cw, ch);
+          const c = imdata.data;
+          const imgray = [];
+
+          for (let i = 0; i < c.length; i += 4) {
+            const Y = 0.3 * c[i] + 0.59 * c[i + 1] + 0.11 * c[i + 2];
+            imgray.push(Y);
+          }
+
+          const mina = [];
+          for (let h = 0; h < ch; h++) {
+            for (let w = 0; w < cw; w++) {
+              const u = max(0, h - 1);
+              const d = min(ch - 1, h + 1);
+              const l = max(0, w - 1);
+              const r = min(cw - 1, w + 1);
+
+              mina.push(
+                255 -
+                  max(
+                    imgray[u * cw + l],
+                    imgray[u * cw + w],
+                    imgray[u * cw + r],
+                    imgray[h * cw + l],
+                    imgray[h * cw + w],
+                    imgray[h * cw + r],
+                    imgray[d * cw + l],
+                    imgray[d * cw + w],
+                    imgray[d * cw + r]
+                  )
+              );
+            }
+          }
+          const result = [];
+          for (let i = 0; i < imgray.length; i++) {
+            const Y = imgray[i];
+            const M = mina[i];
+            result.push(Y + (Y * M) / (255 - M));
+          }
+
+          for (let i = 0; i < c.length; i += 4) {
+            c[i] = c[i + 1] = c[i + 2] = result[i / 4];
+          }
+
+          ctx.putImageData(imdata, 0, 0);
+          processedImage.src = canvas.toDataURL('image/png');
+        };
+      }
+
+      // 转换为铅笔素描图
+      function convertToPencilSketch() {
+        if (!originalImage.src) return;
+
+        // 禁用按钮防止重复点击
+        pencilSketchButton.disabled = true;
+
+        // 显示处理动画
+        processedPreview.classList.add('loading');
+        processingContainer.classList.add('active');
+        scanOverlay.style.display = 'block';
+
+        // 显示过渡图片
+        transitionImage.src = originalImage.src;
+        transitionImage.style.opacity = 1;
+
+        // 模拟处理延迟
+        setTimeout(() => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          const img = new Image();
+          img.src = originalImage.src;
+          img.crossOrigin = 'Anonymous';
+
+          img.onload = () => {
+            const cw = (canvas.width = img.width);
+            const ch = (canvas.height = img.height);
+            ctx.drawImage(img, 0, 0);
+
+            const imdata = ctx.getImageData(0, 0, cw, ch);
+            const data = imdata.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+              const gray =
+                0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+              data[i] = data[i + 1] = data[i + 2] = 255 - gray;
+            }
+
+            ctx.putImageData(imdata, 0, 0);
+            processedImage.src = canvas.toDataURL('image/png');
+
+            // 开始过渡动画
+            const animationDuration = 1500;
+            const startTime = performance.now();
+            const animate = currentTime => {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / animationDuration, 1);
+              transitionImage.style.opacity = 1 - progress;
+
+              if (elapsed < animationDuration) {
+                processingAnimationId = requestAnimationFrame(animate);
+              } else {
+                // 完成处理动画
+                processedPreview.classList.remove('loading');
+                processingContainer.classList.remove('active');
+                scanOverlay.style.display = 'none';
+
+                // 显示处理结果
+                processedPlaceholder.style.display = 'none';
+                processedImage.style.display = 'block';
+                transitionImage.style.opacity = 0;
+
+                // 添加结果出现动画
+                processedImage.style.animation = 'fadeIn 0.5s ease forwards';
+
+                // 启用下载按钮
+                downloadButton.disabled = false;
+                pencilSketchButton.disabled = false;
+              }
+            };
+            processingAnimationId = requestAnimationFrame(animate);
+          };
+        }, 100);
+      }
+
+      // 转换为黑白图
+      function convertToBlackWhite() {
+        if (!originalImage.src) return;
+
+        // 禁用按钮防止重复点击
+        blackWhiteButton.disabled = true;
+
+        // 显示处理动画
+        processedPreview.classList.add('loading');
+        processingContainer.classList.add('active');
+        scanOverlay.style.display = 'block';
+
+        // 显示过渡图片
+        transitionImage.src = originalImage.src;
+        transitionImage.style.opacity = 1;
+
+        // 模拟处理延迟
+        setTimeout(() => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          const img = new Image();
+          img.src = originalImage.src;
+          img.crossOrigin = 'Anonymous';
+
+          img.onload = () => {
+            const cw = (canvas.width = img.width);
+            const ch = (canvas.height = img.height);
+            ctx.drawImage(img, 0, 0);
+
+            const imdata = ctx.getImageData(0, 0, cw, ch);
+            const data = imdata.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+              const gray =
+                0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+              const binary = gray > 128 ? 255 : 0;
+              data[i] = data[i + 1] = data[i + 2] = binary;
+            }
+
+            ctx.putImageData(imdata, 0, 0);
+            processedImage.src = canvas.toDataURL('image/png');
+
+            // 开始过渡动画
+            const animationDuration = 1500;
+            const startTime = performance.now();
+            const animate = currentTime => {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / animationDuration, 1);
+              transitionImage.style.opacity = 1 - progress;
+
+              if (elapsed < animationDuration) {
+                processingAnimationId = requestAnimationFrame(animate);
+              } else {
+                // 完成处理动画
+                processedPreview.classList.remove('loading');
+                processingContainer.classList.remove('active');
+                scanOverlay.style.display = 'none';
+
+                // 显示处理结果
+                processedPlaceholder.style.display = 'none';
+                processedImage.style.display = 'block';
+                transitionImage.style.opacity = 0;
+
+                // 添加结果出现动画
+                processedImage.style.animation = 'fadeIn 0.5s ease forwards';
+
+                // 启用下载按钮
+                downloadButton.disabled = false;
+                blackWhiteButton.disabled = false;
+              }
+            };
+            processingAnimationId = requestAnimationFrame(animate);
+          };
+        }, 100);
+      }
+
+      // 下载按钮事件
+      downloadButton.addEventListener('click', () => {
+        if (!processedImage.src) return;
+
+        const a = document.createElement('a');
+        a.href = processedImage.src;
+        a.download = 'processed-image.png';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+
+      // 错误处理函数
+      function showError() {
+        errorOverlay.style.display = 'flex';
+      }
+
+      retryButton.addEventListener('click', () => {
+        errorOverlay.style.display = 'none';
+
+        // 重置上传区域
+        uploadArea.classList.remove('uploaded');
+        uploadButton.innerHTML = '<i class="fas fa-folder-open"></i> 选择图片';
+
+        // 隐藏清除按钮
+        clearButton.style.display = 'none';
+      });
+
+      // 点击上传区域也可以触发文件选择
+      uploadArea.addEventListener('click', e => {
+        if (e.target === uploadArea) {
+          fileInput.click();
+        }
+      });
+
+      // 铅笔素描按钮事件
+      pencilSketchButton.addEventListener('click', convertToPencilSketch);
+
+      // 黑白图按钮事件
+      blackWhiteButton.addEventListener('click', convertToBlackWhite);
+
+      // 点击图片显示预览弹窗
+      originalImage.addEventListener('click', () => {
+        if (originalImage.src) {
+          previewImage.src = originalImage.src;
+          scale = 1;
+          previewImage.style.transform = `scale(${scale})`;
+          previewOverlay.style.display = 'flex';
+        }
+      });
+
+      processedImage.addEventListener('click', () => {
+        if (processedImage.src) {
+          previewImage.src = processedImage.src;
+          scale = 1;
+          previewImage.style.transform = `scale(${scale})`;
+          previewOverlay.style.display = 'flex';
+        }
+      });
+
+      // 放大按钮事件
+      zoomInButton.addEventListener('click', e => {
+        e.stopPropagation();
+        scale += 0.1;
+        previewImage.style.transform = `scale(${scale})`;
+      });
+
+      // 缩小按钮事件
+      zoomOutButton.addEventListener('click', e => {
+        e.stopPropagation();
+        if (scale > 0.1) {
+          scale -= 0.1;
+          previewImage.style.transform = `scale(${scale})`;
+        }
+      });
+
+      // 关闭预览弹窗按钮事件
+      closePreviewButton.addEventListener('click', e => {
+        e.stopPropagation();
+        previewOverlay.style.display = 'none';
+      });
+
+      previewOverlay.addEventListener('click', () => {
+        previewOverlay.style.display = 'none';
+      });
+    </script>
+  </body>
+</html>

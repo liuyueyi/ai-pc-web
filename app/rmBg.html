@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO优化 - 页面标题和描述 -->
+    <title>AI图片背景去除工具 - 免费在线去除图片背景 | Transformers.js</title>
+    <meta
+      name="description"
+      content="使用AI图片背景去除工具，快速、免费地在线去除图片背景。基于Transformers.js和RMBG V1.4模型，支持多种图片上传方式，包括粘贴、拖放和URL导入。适用于电商产品图片、个人照片和设计素材处理。"
+    />
+
+    <!-- SEO优化 - 关键词标签 -->
+    <meta
+      name="keywords"
+      content="AI图片背景去除, 在线抠图工具, 免费背景去除, 图片处理, 背景移除, AI抠图, 透明背景, 图片编辑, 电商图片处理"
+    />
+
+    <!-- SEO优化 - 网站作者和版权信息 -->
+    <meta name="author" content="AI图片处理工具团队" />
+    <meta
+      name="copyright"
+      content="© 2025 AI图片处理工具 | 由Transformers.js提供技术支持"
+    />
+
+    <!-- SEO优化 - 规范链接 -->
+    <link rel="canonical" href="https://app.ppai.top/app/rmBg.html" />
+
+    <!-- SEO优化 - Open Graph 标签 -->
+    <meta
+      property="og:title"
+      content="AI图片背景去除工具 - 免费在线去除图片背景"
+    />
+    <meta
+      property="og:description"
+      content="使用AI技术快速、精准地去除图片背景，支持多种上传方式，适用于电商产品、个人照片和设计素材。"
+    />
+    <meta property="og:image" content="https://app.ppai.top/app/rmBg.html" />
+    <meta property="og:url" content="https://app.ppai.top/app/rmBg.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AI图片处理工具" />
+
+    <!-- SEO优化 - Twitter卡片 -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="AI图片背景去除工具 - 免费在线去除图片背景"
+    />
+    <meta
+      name="twitter:description"
+      content="使用AI技术快速、精准地去除图片背景，支持多种上传方式，适用于电商产品、个人照片和设计素材。"
+    />
+    <meta
+      name="twitter:image"
+      content="https://app.ppai.top/app/static/twitter-image.jpg"
+    />
+
+    <!-- 搜索引擎爬虫设置 -->
+    <meta name="robots" content="index, follow" />
+
+    <link rel="icon" href="./static/rmbg.webp" type="image/x-icon" />
+    <link rel="shortcut icon" href="./static/rmbg.webp" type="image/x-icon" />
+
+    <title>AI图片背景去除工具 - Transformers.js</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/rmbg.css" />
+    <style></style>
+  </head>
+
+  <body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a href="#" class="navbar-logo">
+          <img
+            src="https://app.ppai.top/logo.webp"
+            style="height: 2.2rem; width: 5rem"
+          />
+        </a>
+
+        <!-- 桌面端导航菜单 -->
+        <ul class="navbar-menu" id="navbar-menu">
+          <li class="navbar-item">
+            <a href="https://app.ppai.top" target="_blank" class="navbar-link"
+              >主页</a
+            >
+          </li>
+          <li class="navbar-item">
+            <a
+              href="https://app.ppai.top/webapp"
+              target="_blank"
+              class="navbar-link"
+              >WebApp</a
+            >
+          </li>
+          <li class="navbar-item">
+            <a href="#" class="navbar-link active">图片处理工具</a>
+          </li>
+        </ul>
+
+        <!-- 移动端菜单按钮 -->
+        <button class="navbar-toggle" id="navbar-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- 侧边悬浮导航栏 -->
+    <div class="sidebar">
+      <div class="sidebar-item active" data-tool="bg-remover">
+        <i class="fas fa-magic"></i>
+        <a href="#">
+          <div class="sidebar-tooltip">背景去除</div>
+        </a>
+      </div>
+      <div class="sidebar-item" data-tool="image-resize">
+        <i class="fas fa-expand-arrows-alt"></i>
+        <a href="imgline.html">
+          <div class="sidebar-tooltip">线稿提取</div>
+        </a>
+      </div>
+      <div class="sidebar-item" data-tool="image-compress">
+        <i class="fas fa-file-archive"></i>
+        <a href="#recommend-tools">
+          <div class="sidebar-tooltip">相关工具</div>
+        </a>
+      </div>
+      <!--
+        <div class="sidebar-item" data-tool="image-format">
+            <i class="fas fa-file-image"></i>
+            <div class="sidebar-tooltip">格式转换</div>
+        </div>
+        <div class="sidebar-item" data-tool="image-crop">
+            <i class="fas fa-crop"></i>
+            <div class="sidebar-tooltip">图片裁剪</div>
+        </div>
+        <div class="sidebar-item" data-tool="image-filter">
+            <i class="fas fa-filter"></i>
+            <div class="sidebar-tooltip">滤镜效果</div>
+        </div> -->
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-item sidebar-config" id="sidebar-config-btn">
+        <i class="fas">灰</i>
+        <div class="sidebar-tooltip">配置工具</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <header>
+        <h1>AI图片背景去除工具</h1>
+        <p class="subtitle">
+          基于Transformers.js与RMBG
+          V1.4模型，在浏览器中实时去除图片背景，支持多种图片上传方式
+        </p>
+      </header>
+
+      <section class="input-section">
+        <div class="section-title">
+          <i class="fas fa-cloud-upload-alt"></i>
+          <h2>选择图片输入方式</h2>
+        </div>
+
+        <div class="combined-input">
+          <div class="upload-info">
+            <div class="upload-icon">
+              <i class="fas fa-image"></i>
+            </div>
+            <div class="upload-details">
+              <h3>选择图片</h3>
+              <p>支持粘贴、选择文件、拖放</p>
+            </div>
+          </div>
+          <input type="file" id="upload" accept="image/*" />
+          <div id="paste-target">
+            <span>点击此处并粘贴图片(Ctrl+V) 或 拖放图片 或 选择文件</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="status-bar" id="status">
+        <i class="fas fa-info-circle"></i> 请选择一张图片开始处理
+      </div>
+
+      <div class="image-comparison">
+        <div class="image-panel">
+          <div class="panel-header"><i class="fas fa-image"></i> 原始图片</div>
+          <div class="image-container" id="original-container">
+            <div class="image-placeholder">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>原始图片将显示在这里</p>
+            </div>
+            <img id="original-image" alt="Original Image" />
+          </div>
+        </div>
+
+        <div class="image-panel">
+          <div class="panel-header">
+            <i class="fas fa-magic"></i> 去除背景结果
+          </div>
+          <div class="image-container" id="result-container">
+            <div class="image-placeholder">
+              <i class="fas fa-sync-alt"></i>
+              <p>处理后的图片将显示在这里</p>
+            </div>
+            <div class="loading" id="loading">
+              <div class="loading-spinner"></div>
+              <p style="margin-top: 15px">正在处理中...</p>
+            </div>
+            <img id="result-image" alt="Result Image" />
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn btn-primary" id="process-btn" disabled>
+          <i class="fas fa-cogs"></i> 开始处理图片
+        </button>
+        <button class="btn btn-secondary" id="clear-btn">
+          <i class="fas fa-trash-alt"></i> 清除所有
+        </button>
+        <button class="btn btn-secondary" id="example-btn">
+          <i class="fas fa-lightbulb"></i> 使用示例图片
+        </button>
+
+        <button class="btn btn-download" id="download-btn" disabled>
+          <i class="fas fa-download"></i> 下载图片
+        </button>
+      </div>
+
+      <!-- SEO优化 - FAQ部分 -->
+      <div class="faq-section">
+        <h2 class="section-title">
+          <i class="fas fa-question-circle"></i>
+          常见问题
+        </h2>
+        <div class="faq-item">
+          <div class="faq-question">这个工具是如何工作的？</div>
+          <div class="faq-answer">
+            这个工具使用先进的AI模型自动识别图片中的主体和背景，然后智能地将背景去除，保留主体部分。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">支持哪些图片格式？</div>
+          <div class="faq-answer">
+            我们支持JPG、PNG、WEBP等常见图片格式，文件大小最大支持10MB。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">处理后的图片质量如何？</div>
+          <div class="faq-answer">
+            我们的AI模型能够实现高精度的背景去除，即使是头发丝等细节也能较好地保留。处理后的图片会保持原始分辨率。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">我的图片会被保存吗？</div>
+          <div class="faq-answer">
+            我们不会保存您上传的原始图片和处理后的结果。所有图片仅在您的浏览器中处理，处理完成后不会在服务器上保留。
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO优化 - 功能介绍卡片 -->
+      <div class="features-section">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div class="feature-title">快速处理</div>
+          <p>利用先进的AI技术，秒级完成背景去除，无需漫长等待。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-magic"></i>
+          </div>
+          <div class="feature-title">高精度</div>
+          <p>智能识别主体与背景，即使是复杂边缘和透明物体也能精准处理。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="feature-title">隐私保护</div>
+          <p>所有图片处理均在本地完成，不会上传到服务器，确保您的隐私安全。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <div class="feature-title">多平台支持</div>
+          <p>完全基于浏览器运行，无需安装任何软件，支持桌面和移动设备。</p>
+        </div>
+      </div>
+      <!-- SEO优化 - 相关工具链接 -->
+      <div class="related-tools" id="recommend-tools">
+        <h3>相关工具</h3>
+        <ul>
+          <li>
+            <a href="https://app.ppai.top/app/imgline.html">图片线稿提取</a>
+          </li>
+          <li>
+            <a href="https://tool.hhui.top/tools/image/cut/" target="_blank"
+              >图片编辑(翻转/裁剪/旋转)</a
+            >
+          </li>
+          <li>
+            <a href="https://tool.hhui.top/tools/image/imagePatina/"
+              >图片包浆</a
+            >
+          </li>
+          <li>
+            <a href="https://tool.hhui.top/tools/image/gifSplitter/"
+              >GIF图片分解</a
+            >
+          </li>
+          <li>
+            <a href="https://tool.hhui.top/tools/image/jiugongge/"
+              >九宫格切图</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer">
+        <p>
+          基于
+          <a href="https://huggingface.co/briaai/RMBG-1.4" target="_blank"
+            >RMBG V1.4模型</a
+          >
+          |
+          <a href="https://github.com/liuyueyi/autoRMBG" target="_blank"
+            >项目源码</a
+          >
+        </p>
+
+        <p>© 2025 AI图片处理工具 | 由Transformers.js提供技术支持</p>
+      </div>
+    </div>
+    <!-- 弹窗元素 -->
+    <div class="image-popup" id="image-popup">
+      <div class="popup-content">
+        <span class="popup-close" id="popup-close">&times;</span>
+        <img id="popup-image" src="" alt="Popup Image" />
+        <div class="popup-zoom">
+          <button id="zoom-in">放大</button>
+          <button id="zoom-out">缩小</button>
+        </div>
+      </div>
+    </div>
+    <script src="./js//rmbg.js" type="module"></script>
+    <script type="module">
+      import { initModel, rmBg } from './js/rmbg.js';
+
+      document.addEventListener('DOMContentLoaded', async function () {
+        // 元素引用
+        const pasteTarget = document.getElementById('paste-target');
+        const uploadInput = document.getElementById('upload');
+        const combinedInput = document.querySelector('.combined-input');
+        const processBtn = document.getElementById('process-btn');
+        const clearBtn = document.getElementById('clear-btn');
+        const exampleBtn = document.getElementById('example-btn');
+        const downBtn = document.getElementById('download-btn');
+        const originalContainer = document.getElementById('original-container');
+        const originalImage = document.getElementById('original-image');
+        const resultContainer = document.getElementById('result-container');
+        const resultImage = document.getElementById('result-image');
+        const loading = document.getElementById('loading');
+        const statusBar = document.getElementById('status');
+        const inputSection = document.querySelector('.input-section');
+        const imagePopup = document.getElementById('image-popup');
+        const popupImage = document.getElementById('popup-image');
+        const popupClose = document.getElementById('popup-close');
+        const zoomIn = document.getElementById('zoom-in');
+        const zoomOut = document.getElementById('zoom-out');
+
+        // 导航栏元素
+        const navbarToggle = document.getElementById('navbar-toggle');
+        const navbarMenu = document.getElementById('navbar-menu');
+        const navbarLinks = document.querySelectorAll('.navbar-link');
+
+        // 导航栏菜单切换
+        navbarToggle.addEventListener('click', function () {
+          navbarMenu.classList.toggle('active');
+        });
+
+        let moduleLoaded = false;
+        // 加载模型
+        initModel(() => {
+          console.log('加载数据模型完成!');
+          moduleLoaded = true;
+          // 支持处理图片
+          processBtn.disabled = false;
+          showStatus('模型已加载完成!', 'success');
+        });
+
+        // 当前处理的图片
+        let currentImage = null;
+        let currentFileName = null;
+
+        // 1. 粘贴图片功能
+        pasteTarget.addEventListener('click', function () {
+          this.classList.add('active');
+          this.innerHTML = '<span>请按Ctrl+V粘贴图片</span>';
+        });
+
+        document.addEventListener('paste', function (e) {
+          if (e.clipboardData.files.length > 0) {
+            const file = e.clipboardData.files[0];
+            if (file.type.match('image.*')) {
+              pasteTarget.innerHTML =
+                '<span>图片已粘贴! 点击"开始处理图片"</span>';
+              currentFileName = file.name || 'pasted_image';
+              loadImage(file);
+            }
+          }
+        });
+
+        // 2. 文件选择功能
+        combinedInput.addEventListener('click', function () {
+          uploadInput.click();
+        });
+
+        uploadInput.addEventListener('change', function (e) {
+          if (e.target.files.length > 0) {
+            const file = e.target.files[0];
+            currentFileName = file.name;
+            loadImage(file);
+          }
+        });
+
+        // 3. 拖放功能
+        combinedInput.addEventListener('dragover', function (e) {
+          e.preventDefault();
+          this.classList.add('drag-over');
+        });
+
+        combinedInput.addEventListener('dragleave', function () {
+          this.classList.remove('drag-over');
+        });
+
+        combinedInput.addEventListener('drop', function (e) {
+          e.preventDefault();
+          this.classList.remove('drag-over');
+
+          if (e.dataTransfer.files.length > 0) {
+            const file = e.dataTransfer.files[0];
+            if (file.type.match('image.*')) {
+              currentFileName = file.name;
+              loadImage(file);
+            }
+          }
+        });
+
+        // 加载图片到预览
+        function loadImage(file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            currentImage = e.target.result;
+            showImage(originalImage, currentImage);
+            showStatus(`已加载图片: ${currentFileName}`, 'success');
+
+            // 将输入区域改为缩略模式
+            inputSection.classList.add('compact');
+            combinedInput.classList.add('compact');
+
+            // 更新上传区域的显示
+            pasteTarget.innerHTML = `<span>已选择: ${currentFileName}</span>`;
+            pasteTarget.style.cursor = 'default';
+
+            // 移除激活状态
+            pasteTarget.classList.remove('active');
+          };
+          reader.readAsDataURL(file);
+        }
+
+        // 显示图片
+        function showImage(imgElement, src) {
+          imgElement.src = src;
+          imgElement.style.display = 'block';
+
+          // 隐藏原容器中的占位符
+          const placeholder =
+            originalContainer.querySelector('.image-placeholder');
+          if (placeholder) placeholder.style.display = 'none';
+
+          // 启用处理按钮
+          processBtn.disabled = false;
+        }
+
+        // 处理图片
+        processBtn.addEventListener('click', function () {
+          if (!currentImage) {
+            showStatus('请先选择图片', 'error');
+            return;
+          }
+
+          // 显示加载状态
+          loading.style.display = 'block';
+          const resultPlaceholder =
+            resultContainer.querySelector('.image-placeholder');
+          if (resultPlaceholder) resultPlaceholder.style.display = 'none';
+
+          showStatus('正在处理图片，请稍候...', 'processing');
+
+          // 调用AI模型实现自动抠图
+          rmBg(currentImage).then(ans => {
+            // 模拟处理后的图片
+            resultImage.src = ans;
+            resultImage.style.display = 'block';
+            loading.style.display = 'none';
+            showStatus('背景去除完成!', 'success');
+
+            // 开启图片下载功能
+            downBtn.disabled = false;
+          });
+        });
+
+        downBtn.addEventListener('click', function () {
+          // 开始实现图片下载
+          if (!resultImage.src) return;
+
+          const a = document.createElement('a');
+          a.href = resultImage.src;
+          a.download = 'rmbg.png';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        });
+
+        // 清除所有
+        clearBtn.addEventListener('click', function () {
+          currentImage = null;
+          currentFileName = null;
+          originalImage.src = '';
+          originalImage.style.display = 'none';
+          resultImage.src = '';
+          resultImage.style.display = 'none';
+          loading.style.display = 'none';
+
+          // 显示占位符
+          originalContainer.querySelector('.image-placeholder').style.display =
+            'block';
+          resultContainer.querySelector('.image-placeholder').style.display =
+            'block';
+
+          // 禁用处理按钮
+          processBtn.disabled = true;
+
+          // 禁用下载按钮
+          downBtn.disabled = true;
+          showStatus('已清除所有内容，请选择新图片', 'info');
+
+          // 恢复输入区域到原始状态
+          inputSection.classList.remove('compact');
+          combinedInput.classList.remove('compact');
+
+          // 重置粘贴区域
+          pasteTarget.innerHTML =
+            '<span>点击此处并粘贴图片(Ctrl+V) 或 拖放图片 或 选择文件</span>';
+          pasteTarget.style.cursor = 'pointer';
+        });
+
+        // 示例图片
+        exampleBtn.addEventListener('click', function () {
+          const exampleUrl = 'https://app.ppai.top/app/static/rmbgdemo.webp';
+          currentImage = exampleUrl;
+          currentFileName = 'example.jpg';
+          showImage(originalImage, exampleUrl);
+          showStatus(`已加载示例图片`, 'success');
+
+          // 将输入区域改为缩略模式
+          inputSection.classList.add('compact');
+          combinedInput.classList.add('compact');
+
+          // 更新上传区域的显示
+          pasteTarget.innerHTML = `<span>已选择: ${currentFileName}</span>`;
+          pasteTarget.style.cursor = 'default';
+        });
+
+        // 显示状态信息
+        function showStatus(message, type) {
+          statusBar.style.display = 'block';
+          statusBar.innerHTML = `<i class="fas fa-info-circle"></i> ${message}`;
+
+          // 设置不同状态的颜色
+          statusBar.style.background = 'var(--primary-light)';
+          statusBar.style.color = 'var(--dark-color)';
+
+          if (type === 'success') {
+            statusBar.style.background = '#ecfdf5';
+            statusBar.style.color = '#047857';
+          } else if (type === 'error') {
+            statusBar.style.background = '#fef2f2';
+            statusBar.style.color = '#b91c1c';
+          } else if (type === 'processing') {
+            statusBar.style.background = '#fffbeb';
+            statusBar.style.color = '#b45309';
+          }
+        }
+
+        // 图片点击事件
+        originalImage.addEventListener('click', function () {
+          openPopup(this.src);
+        });
+
+        resultImage.addEventListener('click', function () {
+          openPopup(this.src);
+        });
+
+        // 打开弹窗
+        function openPopup(src) {
+          popupImage.src = src;
+          imagePopup.style.display = 'flex';
+        }
+
+        // 关闭弹窗
+        popupClose.addEventListener('click', function () {
+          imagePopup.style.display = 'none';
+        });
+
+        // 放大缩小功能
+        let scale = 1;
+        zoomIn.addEventListener('click', function () {
+          scale += 0.1;
+          popupImage.style.transform = `scale(${scale})`;
+        });
+
+        zoomOut.addEventListener('click', function () {
+          if (scale > 0.1) {
+            scale -= 0.1;
+            popupImage.style.transform = `scale(${scale})`;
+          }
+        });
+
+        // 初始状态
+        showStatus('请选择一张图片开始处理', 'info');
+        processBtn.disabled = true;
+      });
+    </script>
+  </body>
+</html>
