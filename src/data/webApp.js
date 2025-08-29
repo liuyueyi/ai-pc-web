@@ -52,4 +52,11 @@ export const apps = [
     googlePlayUrl: '',
     previewUrl: '/app/earn.html',
   },
+  {
+    name: 'bart generator',
+    description: 'bart style image generator',
+    logo: '/app/static/brat.webp',
+    googlePlayUrl: '',
+    previewUrl: '/app/brat-en.html',
+  },
 ];
