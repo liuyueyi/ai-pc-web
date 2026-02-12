@@ -2,10 +2,13 @@
   <div class="app">
     <header class="header">
       <nav class="nav">
-        <a href="/"><img :src="baseUrl + 'logo.webp'" class="logo" /></a>
+        <a href="/" style="display: flex;align-items: center; gap: 15px;text-decoration: none;">
+          <img :src="baseUrl + 'logo.webp'" class="logo" />
+          <span style="color: #333;font-weight: bold;">Hhui's App Show</span>
+        </a>
         <div class="nav-links">
           <router-link to="/" class="nav-link">主页</router-link>
-          <router-link to="/webapp" class="nav-link">WEB-APP</router-link>
+          <router-link to="/webapp" class="nav-link">应用秀</router-link>
           <router-link to="/about" class="nav-link">关于我</router-link>
         </div>
         <div class="nav-right">
@@ -13,11 +16,7 @@
             <i class="search-icon"></i>
           </button>
           <div class="avatar">
-            <img
-              src="https://hhui.top/tutorial/logo.svg"
-              alt="User"
-              class="avatar-img"
-            />
+            <img src="https://imgbed.ppai.top/file/1770779881722_hui-logo.webp" alt="User" class="avatar-img" />
           </div>
         </div>
       </nav>
@@ -33,14 +32,8 @@
 
     <footer class="footer">
       <!-- ai-站点-adsens -->
-      <ins
-        class="adsbygoogle"
-        style="display: block"
-        data-ad-client="ca-pub-5592000528061748"
-        data-ad-slot="2259877961"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
+      <ins class="adsbygoogle" style="display: block" data-ad-client="ca-pub-5592000528061748" data-ad-slot="2259877961"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
       <p>
         © {{ new Date().getFullYear() }} APP Showcase. All rights reserved.
       </p>
@@ -87,7 +80,7 @@ body {
 .nav {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 5px 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -98,13 +91,13 @@ body {
 .logo {
   font-weight: 700;
   color: #333;
-  width: 4rem;
+  width: 3.3rem;
 }
 
 .nav-links {
   display: flex;
   gap: 2rem;
-  margin-left: -45rem;
+  margin-left: 1rem;
 }
 
 .nav-link {

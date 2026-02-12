@@ -11,8 +11,7 @@ export const apps = [
     name: 'Printo',
     description: '普染千格，智印万象 | 免费在线打印模板设计器',
     logo: '/static/printo/cover.jpg',
-    googlePlayUrl:
-      'https://play.google.com/store/apps/details?id=com.git.hui.printo',
+    googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.git.hui.printo',
     previewUrl: 'https://ai.hhui.top/printo/#/',
   },
   {
@@ -28,13 +27,13 @@ export const apps = [
     description: '免费在线的图片转线稿工具',
     logo: '/static/webapp/linedraw.jpg',
     googlePlayUrl: '',
-    previewUrl: 'https://ai.hhui.top/app/imgline.html',
+    previewUrl: '/app/imgline.html',
   },
   {
     name: 'QuickTools',
     description:
       '神奇的百宝箱，收集各路直接在本地浏览器实现全功能的小工具，安全无风险，支持离线使用',
-    logo: 'https://tool.hhui.top/icon.svg',
+    logo: 'https://imgbed.ppai.top/file/1770779881722_hui-logo.webp',
     googlePlayUrl: '',
     previewUrl: 'https://tool.hhui.top/',
   },
@@ -58,5 +57,37 @@ export const apps = [
     logo: '/app/static/brat.webp',
     googlePlayUrl: '',
     previewUrl: '/app/brat-en.html',
+  },
+  {
+    name: 'MyBatis SQL Log Merge',
+    description: '帮助开发者轻松地将 MyBatis 日志中的 SQL 模板和参数合并成完整的可执行 SQL 语句',
+    logo: 'https://imgbed.ppai.top/file/1770862032200_icon128.png',
+    chromeUrl: 'https://chromewebstore.google.com/detail/mybatis-sql-log-merger/ldlekpjpadmkfoohidfgjjcmegdbkbho',
+    googlePlayUrl: '',
+    previewUrl: '/app/mybatis/index.html',
+  },
+  {
+    name: 'TableHelper表格助手',
+    description: '像Excel一样选择表格单元格 - 选择、复制、数据分析',
+    logo: 'https://imgbed.ppai.top/file/1770863123529_icon128.png',
+    chromeUrl: 'https://chromewebstore.google.com/detail/tablehelper/dklaelceomicpnakfmdonmghianjoiag',
+    googlePlayUrl: '',
+    previewUrl: '/app/tablehelper/index.html',
+  },
+  {
+    name: 'QuickNav快速导航',
+    description: '3秒定制导航，90%操作提速',
+    logo: 'https://imgbed.ppai.top/file/1770864632545_image.png',
+    chromeUrl: 'https://chromewebstore.google.com/detail/quicknav-suite-customize/gcdpgbljniocaibcgjgloiokkaflkiag',
+    googlePlayUrl: '',
+  },
+  {
+    name: '一灰灰的图床',
+    description: '在线图床管理工具',
+    logo: 'https://imgbed.ppai.top/file/1770864216704_bedlogo.webp',
+    chromeUrl: '',
+    googlePlayUrl: '',
+    previewUrl: 'https://imgbed.ppai.top',
+    category: '开发类'
   },
 ];

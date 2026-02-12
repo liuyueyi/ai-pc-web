@@ -23,22 +23,13 @@
         <h2 class="section-title">推荐应用</h2>
         <p class="section-description">精选优质应用，提升您的工作与生活效率</p>
 
-        <div class="re-app-grid">
-          <div
-            v-for="(app, index) in paginatedApps"
-            :key="index"
-            class="re-app-item"
-            @click="goToDetail(app.id)"
-          >
+        <div class="re-app-grid" @mouseenter="stopAutoPagination" @mouseleave="startAutoPagination">
+          <div v-for="(app, index) in paginatedApps" :key="index" class="re-app-item" @click="goToDetail(app.id)">
             <div class="re-app-icon">
-              <img
-                :src="
-                  app.logo && app.logo.startsWith('http')
-                    ? app.logo
-                    : baseUrl + app.logo
-                "
-                :alt="app.name"
-              />
+              <img :src="app.logo && app.logo.startsWith('http')
+                ? app.logo
+                : baseUrl + app.logo
+                " :alt="app.name" />
             </div>
             <div class="re-app-info">
               <h3 class="re-app-name">{{ app.name }}</h3>
@@ -53,20 +44,17 @@
         <div class="featured-header">
           <div class="page-info">
             第 {{ currentPage + 1 }} 页 / 共 {{ totalPages }} 页
+            <!-- 添加进度指示器 -->
+            <div class="progress-indicator">
+              <div v-for="n in totalPages" :key="n" class="progress-dot"
+                :class="{ active: n - 1 === currentPage, animating: n - 1 === currentPage && isAutoPaginating }"></div>
+            </div>
           </div>
           <div class="pagination-controls">
-            <button
-              class="pagination-btn"
-              @click="prevPage"
-              :disabled="currentPage === 0"
-            >
+            <button class="pagination-btn" @click="prevPage" :disabled="currentPage === 0">
               <span class="arrow">←</span> 上一页
             </button>
-            <button
-              class="pagination-btn"
-              @click="nextPage"
-              :disabled="currentPage === totalPages - 1"
-            >
+            <button class="pagination-btn" @click="nextPage" :disabled="currentPage === totalPages - 1">
               下一页 <span class="arrow">→</span>
             </button>
           </div>
@@ -77,23 +65,12 @@
     <section class="app-showcase">
       <div class="carousel-container">
         <div class="carousel" ref="carousel">
-          <div
-            v-for="(app, index) in [...apps, ...clonedCards]"
-            :key="index"
-            class="app-card"
-            @mouseenter="showInfo(index)"
-            @mouseleave="hideInfo(index)"
-            @click="goToDetail(app.id)"
-          >
-            <img
-              :src="
-                app.logo && app.logo.startsWith('http')
-                  ? app.logo
-                  : baseUrl + app.logo
-              "
-              :alt="app.name"
-              class="app-image"
-            />
+          <div v-for="(app, index) in [...apps, ...clonedCards]" :key="index" class="app-card"
+            @mouseenter="showInfo(index)" @mouseleave="hideInfo(index)" @click="goToDetail(app.id)">
+            <img :src="app.logo && app.logo.startsWith('http')
+              ? app.logo
+              : baseUrl + app.logo
+              " :alt="app.name" class="app-image" />
             <div class="app-name" v-show="!app.showInfo">{{ app.name }}</div>
             <div class="app-info" :class="{ show: app.showInfo }">
               <div class="app-price">{{ app.price }}</div>
@@ -118,15 +95,10 @@
                 </div>
               </div>
               <div class="app-creator">
-                <img
-                  :src="
-                    app.creator.avatar && app.creator.avatar.startsWith('http')
-                      ? app.creator.avatar
-                      : baseUrl + app.creator.avatar
-                  "
-                  alt="Creator"
-                  class="creator-avatar"
-                />
+                <img :src="app.creator.avatar && app.creator.avatar.startsWith('http')
+                  ? app.creator.avatar
+                  : baseUrl + app.creator.avatar
+                  " alt="Creator" class="creator-avatar" />
                 <div class="creator-info">
                   <div class="creator-name">{{ app.creator.name }}</div>
                   <div class="creator-handle">{{ app.creator.handle }}</div>
@@ -170,6 +142,8 @@ const clonedCards = ref([]);
 const currentPage = ref(0);
 const itemsPerPage = 6;
 const totalPages = Math.ceil(appList.length / itemsPerPage);
+const isAutoPaginating = ref(false);
+let autoPageInterval = null;
 
 // 获取当前页的应用列表
 const paginatedApps = computed(() => {
@@ -177,6 +151,25 @@ const paginatedApps = computed(() => {
   const end = start + itemsPerPage;
   return apps.value.slice(start, end);
 });
+
+// 开始自动翻页
+const startAutoPagination = () => {
+  if (!autoPageInterval) {
+    isAutoPaginating.value = true;
+    autoPageInterval = setInterval(() => {
+      nextPage();
+    }, 5000); // 每5秒自动翻页
+  }
+};
+
+// 停止自动翻页
+const stopAutoPagination = () => {
+  if (autoPageInterval) {
+    clearInterval(autoPageInterval);
+    autoPageInterval = null;
+    isAutoPaginating.value = false;
+  }
+};
 
 // 翻页方法
 const prevPage = () => {
@@ -188,6 +181,8 @@ const prevPage = () => {
 const nextPage = () => {
   if (currentPage.value < totalPages - 1) {
     currentPage.value++;
+  } else {
+    currentPage.value = 0; // 循环回到第一页
   }
 };
 
@@ -238,6 +233,7 @@ const startCarousel = () => {
 onMounted(() => {
   cloneFirstCards();
   startCarousel();
+  startAutoPagination(); // 启动自动翻页
   window.addEventListener('resize', cloneFirstCards);
 });
 
@@ -245,6 +241,7 @@ onUnmounted(() => {
   if (carouselInterval) {
     clearInterval(carouselInterval);
   }
+  stopAutoPagination(); // 停止自动翻页
   window.removeEventListener('resize', cloneFirstCards);
 });
 const goToDetail = id => {
@@ -526,6 +523,49 @@ const goToDetail = id => {
 .page-info {
   font-size: 0.9rem;
   color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progress-indicator {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ddd;
+  transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+  background-color: #1976d2;
+  transform: scale(1.2);
+}
+
+.progress-dot.animating {
+  animation: pulse 5s linear;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.2);
+    background-color: #1976d2;
+  }
+
+  80% {
+    transform: scale(1.2);
+    background-color: #1976d2;
+  }
+
+  100% {
+    transform: scale(1.2);
+    background-color: #42a5f5;
+  }
 }
 
 .pagination-controls {
